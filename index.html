@@ -489,13 +489,17 @@ body{
 </head>
 <body>
 
+<!-- ════ SPLASH ════ -->
 <div id="splash" onclick="exitSplash()">
 
+  <!-- 星空 -->
   <div class="stars" id="stars"></div>
 
+  <!-- 月亮 -->
   <div class="moon"></div>
 
 
+  <!-- 海鷗 -->
   <div class="seagull" style="--spd:14s;--delay:2s;top:22%;--ty:-10px;--ty2:15px;">
     <svg width="28" height="12" viewBox="0 0 28 12"><path d="M0 6 Q7 0 14 4 Q21 0 28 6" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round"/></svg>
   </div>
@@ -506,17 +510,26 @@ body{
     <svg width="16" height="7" viewBox="0 0 16 7"><path d="M0 3.5 Q4 0 8 2.5 Q12 0 16 3.5" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.3" stroke-linecap="round"/></svg>
   </div>
 
+  <!-- 大型郵輪 SVG -->
   <div class="ship-wrap">
     <svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;filter:drop-shadow(0 12px 30px rgba(0,0,0,0.6));">
+      <!-- 船體主體 -->
       <path d="M20 110 L30 80 L310 80 L320 110 Z" fill="#1a3a6e" stroke="#2a5a9e" stroke-width="1"/>
+      <!-- 船底弧形 -->
       <path d="M20 110 Q170 135 320 110 L310 125 Q170 148 30 125 Z" fill="#0d2548" stroke="#1a3a6e" stroke-width="0.5"/>
+      <!-- 船體下部高光 -->
       <path d="M25 112 Q170 132 315 112" fill="none" stroke="rgba(100,160,255,0.25)" stroke-width="2"/>
+      <!-- 水線 -->
       <path d="M18 118 Q170 138 322 118" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
 
+      <!-- 主甲板 -->
       <rect x="28" y="68" width="284" height="14" rx="2" fill="#1e4a8a" stroke="#2a5aaa" stroke-width="0.8"/>
+      <!-- 甲板欄杆線 -->
       <line x1="30" y1="72" x2="310" y2="72" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
 
+      <!-- 艙房層 1（最低層） -->
       <rect x="40" y="48" width="260" height="22" rx="3" fill="#1a4080" stroke="#2a55a5" stroke-width="0.7"/>
+      <!-- 艙房層 1 舷窗 -->
       <g fill="rgba(255,240,160,0.8)">
         <circle cx="60"  cy="59" r="4.5"/>
         <circle cx="82"  cy="59" r="4.5"/>
@@ -530,6 +543,7 @@ body{
         <circle cx="258" cy="59" r="4.5"/>
         <circle cx="280" cy="59" r="4.5"/>
       </g>
+      <!-- 舷窗光暈 -->
       <g fill="rgba(255,240,160,0.15)">
         <circle cx="60"  cy="59" r="7"/>
         <circle cx="104" cy="59" r="7"/>
@@ -539,7 +553,9 @@ body{
         <circle cx="280" cy="59" r="7"/>
       </g>
 
+      <!-- 艙房層 2 -->
       <rect x="50" y="30" width="240" height="20" rx="3" fill="#1d488c" stroke="#2d5aac" stroke-width="0.7"/>
+      <!-- 艙房層 2 舷窗 -->
       <g fill="rgba(255,240,160,0.75)">
         <circle cx="70"  cy="40" r="4"/>
         <circle cx="92"  cy="40" r="4"/>
@@ -553,6 +569,7 @@ body{
         <circle cx="268" cy="40" r="4"/>
       </g>
 
+      <!-- 艙房層 3（頂層） -->
       <rect x="70" y="16" width="200" height="16" rx="3" fill="#205090" stroke="#3060b0" stroke-width="0.7"/>
       <g fill="rgba(255,240,160,0.7)">
         <circle cx="90"  cy="24" r="3.5"/>
@@ -566,14 +583,18 @@ body{
         <circle cx="250" cy="24" r="3.5"/>
       </g>
 
+      <!-- 煙囪 左 -->
       <rect x="108" y="2" width="24" height="18" rx="4" fill="#c8970a" stroke="#a07008" stroke-width="1"/>
       <rect x="110" y="2" width="8" height="18" rx="2" fill="rgba(255,255,255,0.1)"/>
       <ellipse cx="120" cy="3" rx="12" ry="3" fill="#daa820" stroke="#a07008" stroke-width="0.8"/>
+      <!-- 煙囪 右 -->
       <rect x="208" y="2" width="24" height="18" rx="4" fill="#c8970a" stroke="#a07008" stroke-width="1"/>
       <rect x="210" y="2" width="8" height="18" rx="2" fill="rgba(255,255,255,0.1)"/>
       <ellipse cx="220" cy="3" rx="12" ry="3" fill="#daa820" stroke="#a07008" stroke-width="0.8"/>
 
+      <!-- 駕駛台 -->
       <rect x="140" y="8" width="60" height="12" rx="3" fill="#1a3566" stroke="#2a4588" stroke-width="0.8"/>
+      <!-- 駕駛台窗戶 -->
       <g fill="rgba(120,200,255,0.6)" stroke="rgba(180,220,255,0.4)" stroke-width="0.5">
         <rect x="145" y="11" width="10" height="6" rx="1"/>
         <rect x="159" y="11" width="10" height="6" rx="1"/>
@@ -581,9 +602,12 @@ body{
         <rect x="187" y="11" width="10" height="6" rx="1"/>
       </g>
 
+      <!-- 船頭 -->
       <path d="M310 80 L320 110 L330 118 Q335 112 320 80Z" fill="#152e5a" stroke="#1a3a6e" stroke-width="0.5"/>
+      <!-- 船尾 -->
       <path d="M30 80 L20 110 L10 118 Q5 112 20 80Z" fill="#152e5a" stroke="#1a3a6e" stroke-width="0.5"/>
 
+      <!-- 欄杆豎條 -->
       <g stroke="rgba(255,255,255,0.25)" stroke-width="0.8">
         <line x1="45"  y1="68" x2="45"  y2="48"/>
         <line x1="75"  y1="68" x2="75"  y2="48"/>
@@ -596,11 +620,14 @@ body{
         <line x1="285" y1="68" x2="285" y2="48"/>
       </g>
 
+      <!-- 旗幟 -->
       <line x1="170" y1="1" x2="170" y2="16" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
       <polygon points="170,1 182,5 170,9" fill="#e63946" opacity="0.9"/>
 
+      <!-- 船體反光 -->
       <path d="M28 85 Q170 78 312 85" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
 
+      <!-- 水花 -->
       <g fill="rgba(255,255,255,0.25)">
         <ellipse cx="22" cy="120" rx="14" ry="3"/>
         <ellipse cx="318" cy="120" rx="14" ry="3"/>
@@ -608,10 +635,12 @@ body{
         <ellipse cx="280" cy="130" rx="8"  ry="2"/>
       </g>
 
+      <!-- MSC 字樣 -->
       <text x="170" y="100" text-anchor="middle" font-size="11" font-weight="900" fill="rgba(255,255,255,0.55)" font-family="Arial,sans-serif" letter-spacing="3">MSC BELLISSIMA</text>
     </svg>
   </div>
 
+  <!-- 海浪 -->
   <div class="waves">
     <div class="wave wave1"></div>
     <div class="wave wave2"></div>
@@ -619,6 +648,7 @@ body{
     <div class="wave wave4"></div>
   </div>
 
+  <!-- 標題 -->
   <div class="splash-content">
     <div class="splash-title">MSC 榮耀號<br>登船須知</div>
     <div class="splash-en">BOARDING GUIDE</div>
@@ -633,8 +663,10 @@ body{
   </div>
 </div>
 
+<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+<!-- ════ APP ════ -->
 <div id="app">
 
 <div class="header">
@@ -663,6 +695,7 @@ body{
 <div class="slides-outer">
 <div class="slides" id="slides">
 
+  <!-- ① 海關與安全 -->
   <div class="slide">
     <div class="slide-head">
       <span class="slide-head-ico">🛃</span>
@@ -672,6 +705,7 @@ body{
       </div>
     </div>
     <div class="slide-body">
+      <!-- 海關檢疫 -->
       <div class="customs">
         <div class="ci red"><div class="ci-ico">🍖🥦🍎</div><div><div class="ci-t" data-zh="肉類・蔬果・農產品" data-id="Daging · Sayuran · Produk Pertanian">肉類・蔬果・農產品</div><div class="ci-s"><span data-zh="入出境嚴禁攜帶" data-id="Dilarang keras dibawa masuk/keluar">入出境嚴禁攜帶</span><br><b data-zh="罰款 3,000 ～ 300 萬元台幣" data-id="Denda TWD 3.000 ～ 3.000.000">罰款 3,000 ～ 300 萬元台幣</b></div></div></div>
         <div class="ci am"><div class="ci-ico">🚬</div><div><div class="ci-t" data-zh="菸：僅限攜帶 1 條" data-id="Rokok: Maksimal 1 Slop">菸：僅限攜帶 1 條</div><div class="ci-s" data-zh="電子菸品禁止攜帶入境台灣" data-id="Rokok elektrik dilarang masuk ke Taiwan">電子菸品禁止攜帶入境台灣</div></div></div>
@@ -679,6 +713,7 @@ body{
       </div>
       <div class="card red"><span class="card-ico">🚨</span><div><div class="card-title" data-zh="從日本帶回台灣也一樣禁止！" data-id="Membawa dari Jepang ke Taiwan juga dilarang!">從日本帶回台灣也一樣禁止！</div><div class="card-desc" data-zh="在沖繩購買的蔬果、肉類，不能帶回船上或帶回台灣。" data-id="Sayuran dan daging yang dibeli di Okinawa tidak boleh dibawa ke kapal atau Taiwan.">在沖繩購買的蔬果、肉類，不能帶回船上或帶回台灣。</div></div></div>
       
+      <!-- 安全檢查分隔 -->
       <div class="divider" style="margin:6px 0;"></div>
       <div class="stitle blue" data-zh="🔍 安全檢查" data-id="🔍 Pemeriksaan Keamanan">🔍 安全檢查</div>
 
@@ -697,6 +732,7 @@ body{
     </div>
   </div>
 
+  <!-- ② 行李規定 -->
   <div class="slide">
     <div class="slide-head">
       <span class="slide-head-ico">🧳</span>
@@ -743,6 +779,7 @@ body{
     </div>
   </div>
 
+  <!-- ③ 衛生盥洗 -->
   <div class="slide">
     <div class="slide-head"><span class="slide-head-ico">🚿</span><div><div class="slide-head-title" data-zh="衛生盥洗用品" data-id="Perlengkapan Mandi">衛生盥洗用品</div><div class="slide-head-sub" data-zh="有提供什麼？要自己帶什麼？" data-id="Apa yang tersedia? Apa yang harus dibawa?">有提供什麼？要自己帶什麼？</div></div></div>
     <div class="slide-body">
@@ -764,6 +801,7 @@ body{
     </div>
   </div>
 
+  <!-- ④ 衣著建議 -->
   <div class="slide">
     <div class="slide-head"><span class="slide-head-ico">👔</span><div><div class="slide-head-title" data-zh="衣著建議" data-id="Panduan Berpakaian">衣著建議</div><div class="slide-head-sub" data-zh="進主餐廳有穿著規定，請注意！" data-id="Ada aturan berpakaian di restoran utama!">進主餐廳有穿著規定，請注意！</div></div></div>
     <div class="slide-body">
@@ -801,6 +839,7 @@ body{
     </div>
   </div>
 
+  <!-- ⑤ 無現金 -->
   <div class="slide">
     <div class="slide-head"><span class="slide-head-ico">💳</span><div><div class="slide-head-title" data-zh="無現金航遊" data-id="Pembayaran Cashless">無現金航遊</div><div class="slide-head-sub" data-zh="登船後記得綁定信用卡！" data-id="Daftar kartu kredit setelah naik kapal!">登船後記得綁定信用卡！</div></div></div>
     <div class="slide-body">
@@ -816,6 +855,7 @@ body{
     </div>
   </div>
 
+  <!-- ⑥ 抽菸攝影 -->
   <div class="slide">
     <div class="slide-head"><span class="slide-head-ico">🚬</span><div><div class="slide-head-title" data-zh="抽菸規定 &amp; 攝影禮儀" data-id="Aturan Merokok &amp; Etika Foto">抽菸規定 &amp; 攝影禮儀</div><div class="slide-head-sub" data-zh="艙房抽菸直接罰款，嚴重者提早離船" data-id="Merokok di kamar langsung didenda">艙房抽菸直接罰款，嚴重者提早離船</div></div></div>
     <div class="slide-body">
@@ -838,6 +878,7 @@ body{
     </div>
   </div>
 
+  <!-- ⑦ DAY3 回船倒數 -->
   <div class="slide">
     <div class="slide-head" style="background:linear-gradient(135deg,#6b0000,#a32d2d);">
       <span class="slide-head-ico">⏱️</span>
@@ -848,12 +889,14 @@ body{
     </div>
     <div class="slide-body">
 
+      <!-- 倒數計時器 -->
       <div class="countdown-wrap" id="cdWrap">
         <div class="countdown-label" id="cdLabel">距離建議回船時間還有</div>
         <div class="countdown-time" id="cdTime">--:--:--</div>
         <div class="countdown-sub" id="cdSub">正在計算中...</div>
       </div>
 
+      <!-- 時間區間說明 -->
       <div class="countdown-target">
         <div class="ct-item ok-zone" style="flex:1.2">
           <div class="ct-time">11:00</div>
@@ -885,6 +928,7 @@ body{
         </div>
       </div>
 
+      <!-- 一鍵加入行事曆 -->
       <button onclick="addToCalendar()" style="
         width:100%;padding:14px;border-radius:14px;border:none;cursor:pointer;
         background:linear-gradient(135deg,#0a2a5e,#185FA5);
@@ -902,8 +946,10 @@ body{
         <div class="done-title" data-zh="全部閱讀完畢！" data-id="Selesai Dibaca!">全部閱讀完畢！</div>
         <div class="done-sub" data-zh="恭喜完成所有登船須知！祝您沖繩郵輪之旅愉快 🚢" data-id="Selamat! Kamu sudah membaca semua panduan. Selamat berlayar ke Okinawa! 🚢">恭喜完成所有登船須知！祝您沖繩郵輪之旅愉快 🚢</div>
 
+        <!-- 安裝到桌面區塊 - 永遠顯示 -->
         <div id="install-section" style="margin-top:20px;">
 
+          <!-- Android / Chrome 安裝按鈕 -->
           <div id="android-install" style="display:none;">
             <button id="install-btn" onclick="doInstall()" style="
               width:100%;padding:16px;border-radius:14px;border:none;cursor:pointer;
@@ -920,6 +966,7 @@ body{
             </div>
           </div>
 
+          <!-- iOS Safari 教學 -->
           <div id="ios-install" style="display:none;">
             <div style="background:#E6F1FB;border-radius:14px;padding:14px;text-align:left;">
               <div style="font-size:14px;font-weight:700;color:#0a2a5e;margin-bottom:10px;">📲 <span id="ios-title" data-zh="加到主畫面（iPhone 教學）" data-id="Cara Pasang ke iPhone">加到主畫面（iPhone 教學）</span></div>
@@ -932,6 +979,7 @@ body{
             </div>
           </div>
 
+          <!-- 通用教學（非手機或已安裝） -->
           <div id="generic-install">
             <div style="background:#EAF3DE;border-radius:14px;padding:14px;text-align:left;">
               <div style="font-size:14px;font-weight:700;color:#27500A;margin-bottom:10px;">📲 <span id="generic-title" data-zh="加到手機桌面，像 APP 一樣使用" data-id="Pasang ke Layar Utama Seperti APP">加到手機桌面，像 APP 一樣使用</span></div>
@@ -948,14 +996,19 @@ body{
     </div>
   </div>
 
-</div></div><div class="bottom-nav">
+</div><!-- /slides -->
+</div><!-- /slides-outer -->
+
+<div class="bottom-nav">
   <button class="nav-btn btn-prev" id="btn-prev" onclick="prev()" disabled>◀</button>
   <button class="nav-btn btn-next" id="btn-next" onclick="next()">
     <span id="next-lbl">下一個主題 →</span>
   </button>
 </div>
 
-</div><script>
+</div><!-- /app -->
+
+<script>
 // ════ STARS ════
 (function(){
   const c=document.getElementById('stars');
@@ -1114,22 +1167,19 @@ const N=7;
 
 // ── 判斷日期，如果是 6/20 將「回船」移至最前面 ──
 const today = new Date();
-// 月份為 0-11 (5 代表 6月)
 if (today.getFullYear() === 2026 && today.getMonth() === 5 && today.getDate() === 20) {
-  // 將陣列的最後一項移到第一項
+  // 1. 調整陣列內容（將第 7 項移至第 1 項）
   const moveLastToFirst = (arr) => [arr[6], ...arr.slice(0, 6)];
   ICONS = moveLastToFirst(ICONS);
   TZH = moveLastToFirst(TZH);
   TID = moveLastToFirst(TID);
 
-  // 同步調換 DOM 元素的順序
-  document.addEventListener("DOMContentLoaded", () => {
-    const slidesContainer = document.getElementById('slides');
-    const slideEls = slidesContainer.querySelectorAll('.slide');
-    if (slideEls.length === 7) {
-      slidesContainer.insertBefore(slideEls[6], slideEls[0]);
-    }
-  });
+  // 2. 同步調整 DOM 中的 Slide 順序（只在這裡精準執行一次！）
+  const slidesContainer = document.getElementById('slides');
+  const slideEls = slidesContainer.querySelectorAll('.slide');
+  if (slideEls.length === 7) {
+    slidesContainer.insertBefore(slideEls[6], slideEls[0]);
+  }
 }
 
 const isNewSession = !sessionStorage.getItem('msc-session');
@@ -1578,29 +1628,17 @@ function updateGenericText() {
 function detectiOS() { detectDevice(); }
 
 // ════ INIT ════
-document.addEventListener("DOMContentLoaded", () => {
-  // 檢查是否為 6/20，如果是的話直接替換 DOM
-  const today = new Date();
-  if (today.getFullYear() === 2026 && today.getMonth() === 5 && today.getDate() === 20) {
-    const slidesContainer = document.getElementById('slides');
-    const slideEls = slidesContainer.querySelectorAll('.slide');
-    if (slideEls.length === 7) {
-      slidesContainer.insertBefore(slideEls[6], slideEls[0]);
-    }
-  }
+buildProg();
+updateNav();
+document.getElementById('btn-sound').textContent = isMuted ? '🔇' : '🔊';
 
-  buildProg();
-  updateNav();
-  document.getElementById('btn-sound').textContent = isMuted ? '🔇' : '🔊';
+if(cur>0){
+  document.getElementById('slides').style.transform=`translateX(-${cur*100}%)`;
+  document.getElementById('slides').style.transition='none';
+  setTimeout(()=>document.getElementById('slides').style.transition='',100);
+}
 
-  if(cur>0){
-    document.getElementById('slides').style.transform=`translateX(-${cur*100}%)`;
-    document.getElementById('slides').style.transition='none';
-    setTimeout(()=>document.getElementById('slides').style.transition='',100);
-  }
-
-  if(splashDone) startCountdown();
-});
+if(splashDone) startCountdown();
 </script>
 </body>
 </html>
