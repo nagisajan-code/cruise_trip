@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a1628">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MSC登船須知">
+<title>MSC 榮耀號 · 登船須知</title>
+<style>
+/* offline - system fonts */
+
+:root{
+  --navy:#0a1628; --blue:#1a5fa5; --ltblue:#deeefb;
+  --gold:#c8970a; --gold-lt:#fdf3d0;
+  --red:#a32d2d; --ltred:#fad8d8;
+  --green:#27500a; --ltgreen:#dff0d0;
+  --amber:#633806; --ltamber:#faebd4;
+  --gray:#eeede8; --text:#1a1a1a;
+  --sky1:#0d2548; --sky2:#1a3a6e; --sky3:#0a4a8a;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;}
+body{
+  font-family:'PingFang TC','Hiragino Sans GB','Microsoft JhengHei','Noto Sans TC','Noto Sans',sans-serif;
+  background:#f0f2f5;color:var(--text);
+  display:flex;flex-direction:column;
+  height:100vh;height:100dvh;
+}
+
+/* ════════════════════════════════
+   SPLASH SCREEN — 宮崎駿風格
+════════════════════════════════ */
+#splash{
+  position:fixed;inset:0;z-index:1000;
+  background:linear-gradient(175deg, #040d1e 0%, #0a1e3d 30%, #0d2f5c 55%, #1a4a80 75%, #1e5590 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  overflow:hidden;
+}
+
+/* 星空 */
+.stars{position:absolute;inset:0;overflow:hidden;}
+.star{
+  position:absolute;border-radius:50%;background:white;
+  animation:twinkle var(--d,3s) var(--delay,0s) infinite ease-in-out;
+}
+@keyframes twinkle{0%,100%{opacity:var(--min,0.2);transform:scale(1);}50%{opacity:1;transform:scale(1.3);}}
+
+/* 海浪層 */
+.waves{position:absolute;bottom:0;left:0;right:0;height:45%;}
+.wave{
+  position:absolute;left:0;right:0;bottom:0;
+  border-radius:50% 50% 0 0 / 20px 20px 0 0;
+  animation:waveMove var(--spd,8s) var(--delay,0s) infinite ease-in-out;
+}
+.wave1{height:55%;background:linear-gradient(180deg,#0d3a6e 0%,#0a2a5e 100%);animation-duration:7s;}
+.wave2{height:48%;background:linear-gradient(180deg,#0f4282 0%,#0d3570 100%);animation-duration:9s;animation-delay:-2s;}
+.wave3{height:40%;background:linear-gradient(180deg,#1a5099 0%,#1240880 100%);animation-duration:11s;animation-delay:-4s;}
+.wave4{height:32%;background:linear-gradient(180deg,#1a5aa8 0%,#164896 100%);animation-duration:8s;animation-delay:-1s;}
+@keyframes waveMove{
+  0%,100%{transform:translateX(0) scaleY(1);}
+  25%{transform:translateX(-12px) scaleY(1.03);}
+  50%{transform:translateX(8px) scaleY(0.97);}
+  75%{transform:translateX(-6px) scaleY(1.02);}
+}
+
+/* 月亮 */
+.moon{
+  position:absolute;top:5%;right:8%;
+  width:46px;height:46px;
+  background:radial-gradient(circle at 40% 40%, #fffde0, #f5d87a, #e8b840);
+  border-radius:50%;
+  box-shadow:0 0 30px 12px rgba(245,216,100,0.3), 0 0 60px 20px rgba(245,216,100,0.12);
+  animation:moonGlow 4s infinite ease-in-out;
+}
+@keyframes moonGlow{
+  0%,100%{box-shadow:0 0 30px 12px rgba(245,216,100,0.3),0 0 60px 20px rgba(245,216,100,0.12);}
+  50%{box-shadow:0 0 40px 18px rgba(245,216,100,0.45),0 0 80px 30px rgba(245,216,100,0.2);}
+}
+
+/* 月光倒影 */
+/* moon reflection removed */
+
+/* 海鷗 */
+.seagull{
+  position:absolute;
+  animation:fly var(--spd,12s) var(--delay,0s) linear infinite;
+}
+.seagull svg{animation:flapWings 0.6s infinite ease-in-out;}
+@keyframes flapWings{
+  0%,100%{transform:scaleY(1);}
+  50%{transform:scaleY(0.6);}
+}
+@keyframes fly{
+  0%{transform:translateX(-80px) translateY(var(--ty,0px));}
+  100%{transform:translateX(calc(100vw + 80px)) translateY(var(--ty2,0px));}
+}
+
+/* 船 */
+.ship-wrap{
+  position:absolute;
+  top:44%;left:50%;transform:translateX(-50%);
+  animation:shipBob 5s infinite ease-in-out;
+  z-index:10;
+  width:260px;
+}
+@keyframes shipBob{
+  0%,100%{transform:translateX(-50%) translateY(0px) rotate(-0.2deg);}
+  20%{transform:translateX(-50%) translateY(-8px) rotate(0.5deg);}
+  40%{transform:translateX(-50%) translateY(-4px) rotate(-0.3deg);}
+  60%{transform:translateX(-50%) translateY(-10px) rotate(0.4deg);}
+  80%{transform:translateX(-50%) translateY(-3px) rotate(-0.2deg);}
+}
+
+/* 標題區 */
+.splash-content{
+  position:relative;z-index:20;
+  text-align:center;
+  padding:0 20px;
+  margin-top:6%;
+}
+.splash-title{
+  font-size:30px;font-weight:900;color:white;
+  line-height:1.2;margin-bottom:6px;
+  text-shadow:0 2px 20px rgba(0,0,0,0.5);
+  opacity:0;
+  animation:fadeSlideUp 1s 0.8s forwards ease-out;
+}
+.splash-en{
+  font-size:13px;color:rgba(255,255,255,0.55);
+  letter-spacing:4px;font-weight:400;
+  opacity:0;
+  animation:fadeSlideUp 1s 1.1s forwards ease-out;
+}
+.splash-line{
+  width:0;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:10px auto;
+  animation:lineExpand 0.8s 1.4s forwards ease-out;
+}
+@keyframes lineExpand{to{width:120px;}}
+.splash-date{
+  font-size:26px;font-weight:900;color:var(--gold);
+  opacity:0;
+  animation:fadeSlideUp 1s 1.6s forwards ease-out;
+  text-shadow:0 0 20px rgba(200,151,10,0.5);
+}
+.splash-sub{
+  font-size:13px;color:rgba(255,255,255,0.6);
+  margin-top:6px;letter-spacing:1px;
+  opacity:0;
+  animation:fadeSlideUp 1s 1.9s forwards ease-out;
+}
+@keyframes fadeSlideUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* 點擊繼續提示 */
+.tap-hint{
+  position:absolute;bottom:12%;left:50%;transform:translateX(-50%);
+  z-index:20;text-align:center;
+  opacity:0;
+  animation:fadeSlideUp 1s 2.8s forwards ease-out;
+}
+.tap-hint-text{font-size:13px;color:rgba(255,255,255,0.5);letter-spacing:2px;}
+.tap-dot{
+  width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);
+  margin:6px auto 0;
+  animation:pulseDot 1.5s 3.5s infinite ease-in-out;
+}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:0.4;}50%{transform:scale(1.6);opacity:1;}}
+
+/* 淡出動� */
+#keyframes splashFadeOut{to{opacity:0;pointer-events:none;}}
+.splash-exit{animation:splashFadeOut 0.7s forwards ease-in!;}
+
+/* ════════════════════════════════
+   MAIN APP
+════════════════════════════════ */
+#app{
+  display:flex;flex-direction:column;
+  height:100%;opacity:0;
+  transition:opacity 0.5s;
+}
+#app.visible{opacity:1;}
+
+/* HEADER */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(10,30,70,0.82);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 8px;
+  border-bottom:0.5px solid rgba(255,255,255,0.12);
+}
+.header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
+.header-ship{font-size:22px;}
+.header-title{font-size:17px;font-weight:900;color:white;text-align:center;flex:1;}
+.header-date{
+  background:var(--gold);color:white;
+  font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;white-space:nowrap;
+}
+
+/* LANG BAR */
+.lang-bar{
+  position:fixed;top:49px;left:0;right:0;z-index:49;
+  background:rgba(8,28,60,0.75);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  padding:5px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:0.5px solid rgba(255,255,255,0.07);
+}
+.lang-label{font-size:11px;color:#9FE1CB;}
+.font-toggle{display:flex;gap:3px;}
+.font-btn{
+  padding:4px 8px;border-radius:10px;font-size:12px;font-weight:700;
+  border:none;cursor:pointer;
+  background:rgba(255,255,255,0.15);color:white;
+  transition:background 0.2s;
+}
+.font-btn:active{background:rgba(255,255,255,0.35);}
+.lang-toggle{display:flex;background:rgba(255,255,255,0.1);border-radius:20px;padding:2px;gap:2px;}
+.lang-btn{padding:4px 12px;border-radius:16px;font-size:12px;font-weight:700;border:none;cursor:pointer;color:rgba(255,255,255,0.55);background:transparent;transition:all 0.2s;}
+.lang-btn.active{background:white;color:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+
+/* PROGRESS */
+.progress{
+  position:fixed;top:89px;left:0;right:0;z-index:48;
+  background:rgba(255,255,255,0.88);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  padding:7px 10px;
+  display:flex;align-items:center;justify-content:center;gap:3px;
+  border-bottom:0.5px solid rgba(0,0,0,0.06);
+  overflow-x:auto;scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+  scroll-padding:0 10px;
+}
+.progress::-webkit-scrollbar{display:none;}
+.dot-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;min-width:38px;scroll-snap-align:center;}
+.dot{
+  width:30px;height:30px;border-radius:50%;
+  background:#e5e7eb;display:flex;align-items:center;justify-content:center;
+  font-size:14px;transition:all 0.25s;border:2px solid transparent;
+}
+.dot.active{
+  background:var(--navy);
+  border-color:var(--gold);
+  transform:scale(1.1);
+  box-shadow:0 2px 8px rgba(10,42,94,0.35);
+}
+.dot.done{background:var(--green);color:white;font-size:12px;}
+
+/* 金色旋轉圈 - 只有下一頁 */
+.dot.next-dot {
+  position:relative;
+  border-color:transparent;
+}
+.dot.next-dot::before {
+  content:'';
+  position:absolute;
+  inset:-4px;
+  border-radius:50%;
+  border:2.5px solid transparent;
+  border-top-color:#FFD700;
+  border-right-color:#FFD700;
+  animation:dotSpin 2s linear infinite;
+  filter:drop-shadow(0 0 3px rgba(255,215,0,0.8));
+}
+.dot.next-dot::after {
+  content:'';
+  position:absolute;
+  inset:-4px;
+  border-radius:50%;
+  border:2.5px solid transparent;
+  border-bottom-color:rgba(255,215,0,0.3);
+  border-left-color:rgba(255,215,0,0.3);
+  animation:dotSpin 2s linear infinite;
+}
+@keyframes dotSpin {
+  from { transform:rotate(0deg); }
+  to   { transform:rotate(360deg); }
+}
+.dot-lbl{font-size:9px;color:#888;text-align:center;line-height:1.2;max-width:38px;}
+.dot-lbl.active{color:var(--navy);font-weight:700;}
+
+/* SLIDES */
+.slides-outer{flex:1;overflow:hidden;position:relative;margin-top:148px;margin-bottom:68px;}
+.slides{display:flex;height:100%;transition:transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94);}
+.slide{min-width:100%;height:100%;overflow-y:auto;background:#f0f2f5;padding:12px 14px 16px;scrollbar-width:none;}
+.slide::-webkit-scrollbar{display:none;}
+
+/* SLIDE CARD */
+.slide-head{background:var(--navy);border-radius:16px 16px 0 0;padding:11px 14px;display:flex;align-items:center;gap:10px;transition:opacity 0.4s ease-out,transform 0.4s ease-out;}
+.slide-head-ico{font-size:22px;}
+.slide-head-title{font-size:17px;font-weight:900;color:white;}
+.slide-head-sub{font-size:11px;color:#9FE1CB;margin-top:2px;}
+.slide-body{background:#f0f2f5;border-radius:0 0 16px 16px;padding:12px;display:flex;flex-direction:column;gap:9px;box-shadow:0 4px 16px rgba(0,0,0,0.08);margin-bottom:4px;}
+
+/* CARDS */
+.card{border-radius:12px;padding:11px 13px;display:flex;align-items:flex-start;gap:10px;}
+.card.blue{background:var(--ltblue);}
+.card.green{background:var(--ltgreen);}
+.card.amber{background:var(--ltamber);}
+.card.red{background:var(--ltred);}
+.card.gray{background:var(--gray);}
+.card.navy{background:var(--navy);}
+.card-ico{font-size:20px;flex-shrink:0;margin-top:1px;}
+.card-title{font-size:15px;font-weight:700;line-height:1.3;}
+.card.blue .card-title{color:#0a2158;}
+.card.green .card-title{color:#1a3d06;}
+.card.amber .card-title{color:#3d1e00;}
+.card.red .card-title{color:#6b0000;}
+.card.gray .card-title{color:#111;}
+.card.navy .card-title{color:white;}
+.card-desc{font-size:12.5px;color:#444;margin-top:4px;line-height:1.65;}
+.card.navy .card-desc{color:#9FE1CB;}
+.card-desc b{font-weight:700;}
+.card.red .card-desc b{color:#6b0000;}
+.card.amber .card-desc b{color:#3d1e00;}
+.card.navy .card-desc b{color:white;}
+.card.blue .card-desc b{color:#0a2158;}
+
+/* BIG WARN */
+.big-warn{background:var(--ltred);border-radius:14px;padding:13px;display:flex;align-items:center;gap:11px;}
+.big-warn-ico{font-size:34px;flex-shrink:0;}
+.big-warn-title{font-size:17px;font-weight:900;color:#6b0000;line-height:1.3;}
+.big-warn-desc{font-size:12.5px;color:#a32d2d;margin-top:4px;line-height:1.6;}
+.big-warn-desc b{color:#6b0000;}
+
+/* ICON GRID */
+.igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+.igrid.c2{grid-template-columns:repeat(2,1fr);}
+.igrid.c4{grid-template-columns:repeat(4,1fr);}
+.ig{border-radius:12px;padding:10px 6px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;}
+.ig.ok{background:var(--ltgreen);}
+.ig.no{background:var(--ltred);}
+.ig.bl{background:var(--ltblue);}
+.ig.am{background:var(--ltamber);}
+.ig-ico{font-size:26px;}
+.ig-lbl{font-size:12px;font-weight:700;line-height:1.3;}
+.ig.ok .ig-lbl{color:#1a3d06;}
+.ig.no .ig-lbl{color:#6b0000;}
+.ig.bl .ig-lbl{color:#0a2158;}
+.ig.am .ig-lbl{color:#3d1e00;}
+.ig-sub{font-size:10.5px;line-height:1.4;}
+.ig.ok .ig-sub{color:#2a5a10;}
+.ig.no .ig-sub{color:#a32d2d;}
+.ig.bl .ig-sub{color:#185FA5;}
+.ig.am .ig-sub{color:#633806;}
+
+/* SECTION TITLE */
+.stitle{font-size:13px;font-weight:700;color:var(--blue);border-left:4px solid var(--blue);padding-left:9px;margin:2px 0;}
+.stitle.red{color:var(--red);border-color:var(--red);}
+.stitle.green{color:var(--green);border-color:var(--green);}
+.stitle.amber{color:var(--amber);border-color:var(--gold);}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:6px;}
+.pill{background:var(--ltred);border-radius:20px;padding:5px 11px;font-size:13px;font-weight:700;color:#7a0000;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+
+/* FLOW */
+.flow{display:flex;flex-direction:column;gap:5px;}
+.flow-row{display:flex;align-items:center;gap:9px;}
+.flow-num{width:26px;height:26px;border-radius:50%;background:var(--blue);color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;}
+.flow-box{flex:1;background:var(--ltblue);border-radius:10px;padding:8px 11px;font-size:13.5px;font-weight:700;color:#0a2158;}
+
+/* CUSTOMS */
+.customs{display:flex;flex-direction:column;gap:7px;}
+.ci{border-radius:12px;padding:11px 13px;display:flex;align-items:center;gap:11px;}
+.ci.red{background:var(--ltred);}
+.ci.am{background:var(--ltamber);}
+.ci-ico{font-size:28px;flex-shrink:0;}
+.ci-t{font-size:14px;font-weight:700;}
+.ci.red .ci-t{color:#6b0000;}
+.ci.am .ci-t{color:#3d1e00;}
+.ci-s{font-size:12px;margin-top:3px;line-height:1.5;}
+.ci.red .ci-s{color:#a32d2d;}
+.ci.am .ci-s{color:#633806;}
+.ci-s b{font-weight:700;}
+
+/* ── COUNTDOWN ── */
+.countdown-wrap{
+  background:linear-gradient(135deg,#0a2a5e,#1a5aa8);
+  border-radius:16px;padding:14px;
+  text-align:center;
+  box-shadow:0 4px 20px rgba(10,42,94,0.35);
+}
+.countdown-label{font-size:12px;color:#9FE1CB;font-weight:600;letter-spacing:1px;margin-bottom:6px;}
+.countdown-time{
+  font-size:42px;font-weight:900;color:white;
+  line-height:1;letter-spacing:2px;
+  font-variant-numeric:tabular-nums;
+}
+.countdown-time.warn{color:#ffcc44;animation:warnPulse 1s infinite;}
+.countdown-time.danger{color:#ff6b6b;animation:warnPulse 0.5s infinite;}
+@keyframes warnPulse{0%,100%{opacity:1;}50%{opacity:0.6;}}
+.countdown-sub{font-size:12px;color:rgba(255,255,255,0.6);margin-top:6px;}
+.countdown-target{
+  display:flex;gap:8px;margin-top:10px;justify-content:center;
+}
+.ct-item{
+  flex:1;background:rgba(255,255,255,0.1);border-radius:10px;
+  padding:8px 6px;
+}
+.ct-item.ok-zone{background:rgba(39,80,10,0.4);}
+.ct-item.warn-zone{background:rgba(200,151,10,0.3);}
+.ct-item.danger-zone{background:rgba(163,45,45,0.4);}
+.ct-time{font-size:16px;font-weight:900;color:white;}
+.ct-label{font-size:10px;color:rgba(255,255,255,0.65);margin-top:2px;}
+
+/* DONE */
+.done{text-align:center;padding:16px 8px;}
+.done-ico{font-size:56px;margin-bottom:10px;}
+.done-title{font-size:21px;font-weight:900;color:var(--navy);margin-bottom:6px;}
+.done-sub{font-size:13.5px;color:#666;line-height:1.7;}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:50;
+  background:rgba(255,255,255,0.82);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-top:0.5px solid rgba(0,0,0,0.06);
+  padding:10px 14px;
+  padding-bottom:calc(env(safe-area-inset-bottom,0px) + 10px);
+  display:flex;gap:9px;
+}
+.nav-btn{
+  flex:1;padding:13px;border-radius:12px;font-size:15px;font-weight:700;
+  border:none;cursor:pointer;transition:all 0.18s;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+}
+.nav-btn:active{transform:scale(0.96);}
+.btn-prev{background:var(--gray);color:#555;}
+.btn-prev:disabled{opacity:0.3;}
+.btn-next{background:var(--navy);color:white;flex:2;box-shadow:0 4px 14px rgba(10,42,94,0.35);}
+.btn-next.last{background:linear-gradient(135deg,#27500a,#3b8f20);}
+
+/* TOAST */
+.toast{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-60px);
+  background:rgba(10,42,94,0.95);color:white;
+  padding:9px 18px;border-radius:20px;font-size:13px;font-weight:700;
+  z-index:999;transition:transform 0.28s ease;white-space:nowrap;
+  box-shadow:0 4px 16px rgba(0,0,0,0.25);
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.divider{height:1px;background:#e5e7eb;margin:1px 0;}
+
+/* ── 骨牌進場動效 ── */
+/* 骨牌進場：只有 entering-slide 才套用，平時不影響 */
+.slide.entering-slide .slide-body > *:nth-child(1)  { animation: staggerIn 0.4s 0.05s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(2)  { animation: staggerIn 0.4s 0.10s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(3)  { animation: staggerIn 0.4s 0.15s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(4)  { animation: staggerIn 0.4s 0.20s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(5)  { animation: staggerIn 0.4s 0.25s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(6)  { animation: staggerIn 0.4s 0.30s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(7)  { animation: staggerIn 0.4s 0.35s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(8)  { animation: staggerIn 0.4s 0.40s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(9)  { animation: staggerIn 0.4s 0.45s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(10) { animation: staggerIn 0.4s 0.50s both ease-out; }
+
+
+
+
+
+
+
+
+
+.slide.entering-slide .slide-body > *:nth-child(10) { animation: staggerIn 0.45s 0.60s both ease-out; }
+
+@keyframes staggerIn {
+  from { transform:translateY(16px); }
+  to   { transform:translateY(0); }
+}
+
+.card, .big-warn, .igrid, .customs, .flow, .stitle, .pills, .countdown-wrap, .countdown-target, .done, .hint {
+  transition:opacity 0.45s ease-out, transform 0.45s ease-out;
+}
+.slide.active-slide .card:nth-child(1),
+.slide.active-slide .ci:nth-child(1),
+.slide.active-slide > div > .card:nth-child(1) { transition-delay:0.05s; }
+.slide.active-slide .anim-item { opacity:1; transform:translateY(0); }
+.hint{font-size:11px;color:#888;text-align:center;padding:1px 0;}
+</style>
+<link rel="apple-touch-icon" id="apple-icon" href="">
+<!-- horn WAV removed, using Web Audio instead -->
+</head>
+<body>
+
+<!-- ════ SPLASH ════ -->
+<div id="splash" onclick="exitSplash()">
+
+  <!-- 星空 -->
+  <div class="stars" id="stars"></div>
+
+  <!-- 月亮 -->
+  <div class="moon"></div>
+
+
+  <!-- 海鷗 -->
+  <div class="seagull" style="--spd:14s;--delay:2s;top:22%;--ty:-10px;--ty2:15px;">
+    <svg width="28" height="12" viewBox="0 0 28 12"><path d="M0 6 Q7 0 14 4 Q21 0 28 6" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </div>
+  <div class="seagull" style="--spd:18s;--delay:7s;top:30%;--ty:5px;--ty2:-8px;">
+    <svg width="20" height="9" viewBox="0 0 20 9"><path d="M0 4.5 Q5 0 10 3 Q15 0 20 4.5" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </div>
+  <div class="seagull" style="--spd:22s;--delay:12s;top:18%;--ty:8px;--ty2:-5px;">
+    <svg width="16" height="7" viewBox="0 0 16 7"><path d="M0 3.5 Q4 0 8 2.5 Q12 0 16 3.5" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.3" stroke-linecap="round"/></svg>
+  </div>
+
+  <!-- 大型郵輪 SVG -->
+  <div class="ship-wrap">
+    <svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;filter:drop-shadow(0 12px 30px rgba(0,0,0,0.6));">
+      <!-- 船體主體 -->
+      <path d="M20 110 L30 80 L310 80 L320 110 Z" fill="#1a3a6e" stroke="#2a5a9e" stroke-width="1"/>
+      <!-- 船底弧形 -->
+      <path d="M20 110 Q170 135 320 110 L310 125 Q170 148 30 125 Z" fill="#0d2548" stroke="#1a3a6e" stroke-width="0.5"/>
+      <!-- 船體下部高光 -->
+      <path d="M25 112 Q170 132 315 112" fill="none" stroke="rgba(100,160,255,0.25)" stroke-width="2"/>
+      <!-- 水線 -->
+      <path d="M18 118 Q170 138 322 118" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+
+      <!-- 主甲板 -->
+      <rect x="28" y="68" width="284" height="14" rx="2" fill="#1e4a8a" stroke="#2a5aaa" stroke-width="0.8"/>
+      <!-- 甲板欄杆線 -->
+      <line x1="30" y1="72" x2="310" y2="72" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+
+      <!-- 艙房層 1（最低層） -->
+      <rect x="40" y="48" width="260" height="22" rx="3" fill="#1a4080" stroke="#2a55a5" stroke-width="0.7"/>
+      <!-- 艙房層 1 舷窗 -->
+      <g fill="rgba(255,240,160,0.8)">
+        <circle cx="60"  cy="59" r="4.5"/>
+        <circle cx="82"  cy="59" r="4.5"/>
+        <circle cx="104" cy="59" r="4.5"/>
+        <circle cx="126" cy="59" r="4.5"/>
+        <circle cx="148" cy="59" r="4.5"/>
+        <circle cx="170" cy="59" r="4.5"/>
+        <circle cx="192" cy="59" r="4.5"/>
+        <circle cx="214" cy="59" r="4.5"/>
+        <circle cx="236" cy="59" r="4.5"/>
+        <circle cx="258" cy="59" r="4.5"/>
+        <circle cx="280" cy="59" r="4.5"/>
+      </g>
+      <!-- 舷窗光暈 -->
+      <g fill="rgba(255,240,160,0.15)">
+        <circle cx="60"  cy="59" r="7"/>
+        <circle cx="104" cy="59" r="7"/>
+        <circle cx="148" cy="59" r="7"/>
+        <circle cx="192" cy="59" r="7"/>
+        <circle cx="236" cy="59" r="7"/>
+        <circle cx="280" cy="59" r="7"/>
+      </g>
+
+      <!-- 艙房層 2 -->
+      <rect x="50" y="30" width="240" height="20" rx="3" fill="#1d488c" stroke="#2d5aac" stroke-width="0.7"/>
+      <!-- 艙房層 2 舷窗 -->
+      <g fill="rgba(255,240,160,0.75)">
+        <circle cx="70"  cy="40" r="4"/>
+        <circle cx="92"  cy="40" r="4"/>
+        <circle cx="114" cy="40" r="4"/>
+        <circle cx="136" cy="40" r="4"/>
+        <circle cx="158" cy="40" r="4"/>
+        <circle cx="180" cy="40" r="4"/>
+        <circle cx="202" cy="40" r="4"/>
+        <circle cx="224" cy="40" r="4"/>
+        <circle cx="246" cy="40" r="4"/>
+        <circle cx="268" cy="40" r="4"/>
+      </g>
+
+      <!-- 艙房層 3（頂層） -->
+      <rect x="70" y="16" width="200" height="16" rx="3" fill="#205090" stroke="#3060b0" stroke-width="0.7"/>
+      <g fill="rgba(255,240,160,0.7)">
+        <circle cx="90"  cy="24" r="3.5"/>
+        <circle cx="110" cy="24" r="3.5"/>
+        <circle cx="130" cy="24" r="3.5"/>
+        <circle cx="150" cy="24" r="3.5"/>
+        <circle cx="170" cy="24" r="3.5"/>
+        <circle cx="190" cy="24" r="3.5"/>
+        <circle cx="210" cy="24" r="3.5"/>
+        <circle cx="230" cy="24" r="3.5"/>
+        <circle cx="250" cy="24" r="3.5"/>
+      </g>
+
+      <!-- 煙囪 左 -->
+      <rect x="108" y="2" width="24" height="18" rx="4" fill="#c8970a" stroke="#a07008" stroke-width="1"/>
+      <rect x="110" y="2" width="8" height="18" rx="2" fill="rgba(255,255,255,0.1)"/>
+      <ellipse cx="120" cy="3" rx="12" ry="3" fill="#daa820" stroke="#a07008" stroke-width="0.8"/>
+      <!-- 煙囪 右 -->
+      <rect x="208" y="2" width="24" height="18" rx="4" fill="#c8970a" stroke="#a07008" stroke-width="1"/>
+      <rect x="210" y="2" width="8" height="18" rx="2" fill="rgba(255,255,255,0.1)"/>
+      <ellipse cx="220" cy="3" rx="12" ry="3" fill="#daa820" stroke="#a07008" stroke-width="0.8"/>
+
+      <!-- 駕駛台 -->
+      <rect x="140" y="8" width="60" height="12" rx="3" fill="#1a3566" stroke="#2a4588" stroke-width="0.8"/>
+      <!-- 駕駛台窗戶 -->
+      <g fill="rgba(120,200,255,0.6)" stroke="rgba(180,220,255,0.4)" stroke-width="0.5">
+        <rect x="145" y="11" width="10" height="6" rx="1"/>
+        <rect x="159" y="11" width="10" height="6" rx="1"/>
+        <rect x="173" y="11" width="10" height="6" rx="1"/>
+								<rect x="187" y="11" width="10" height="6" rx="1"/>
+      </g>
+
+      <!-- 船頭 -->
+      <path d="M310 80 L320 110 L330 118 Q335 112 320 80Z" fill="#152e5a" stroke="#1a3a6e" stroke-width="0.5"/>
+      <!-- 船尾 -->
+      <path d="M30 80 L20 110 L10 118 Q5 112 20 80Z" fill="#152e5a" stroke="#1a3a6e" stroke-width="0.5"/>
+
+      <!-- 欄杆豎條 -->
+      <g stroke="rgba(255,255,255,0.25)" stroke-width="0.8">
+        <line x1="45"  y1="68" x2="45"  y2="48"/>
+        <line x1="75"  y1="68" x2="75"  y2="48"/>
+        <line x1="105" y1="68" x2="105" y2="48"/>
+        <line x1="135" y1="68" x2="135" y2="48"/>
+        <line x1="165" y1="68" x2="165" y2="48"/>
+        <line x1="195" y1="68" x2="195" y2="48"/>
+        <line x1="225" y1="68" x2="225" y2="48"/>
+        <line x1="255" y1="68" x2="255" y2="48"/>
+        <line x1="285" y1="68" x2="285" y2="48"/>
+      </g>
+
+      <!-- 旗幟 -->
+      <line x1="170" y1="1" x2="170" y2="16" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+      <polygon points="170,1 182,5 170,9" fill="#e63946" opacity="0.9"/>
+
+      <!-- 船體反光 -->
+      <path d="M28 85 Q170 78 312 85" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+
+      <!-- 水花 -->
+      <g fill="rgba(255,255,255,0.25)">
+        <ellipse cx="22" cy="120" rx="14" ry="3"/>
+        <ellipse cx="318" cy="120" rx="14" ry="3"/>
+        <ellipse cx="60"  cy="130" rx="8"  ry="2"/>
+        <ellipse cx="280" cy="130" rx="8"  ry="2"/>
+      </g>
+
+      <!-- MSC 字樣 -->
+      <text x="170" y="100" text-anchor="middle" font-size="11" font-weight="900" fill="rgba(255,255,255,0.55)" font-family="Arial,sans-serif" letter-spacing="3">MSC BELLISSIMA</text>
+    </svg>
+  </div>
+
+  <!-- 海浪 -->
+  <div class="waves">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+    <div class="wave wave4"></div>
+  </div>
+
+  <!-- 標題 -->
+  <div class="splash-content">
+    <div class="splash-title">MSC 榮耀號<br>登船須知</div>
+    <div class="splash-en">BOARDING GUIDE</div>
+    <div class="splash-line"></div>
+    <div class="splash-date">2026 年 6 月 18 日</div>
+    <div class="splash-sub">基隆出發 ▸ 日本沖繩那霸 ▸ 返回基隆</div>
+  </div>
+
+  <div class="tap-hint">
+    <div class="tap-hint-text" id="tap-text">點擊任意處開始</div>
+    <div class="tap-dot"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+
+<!-- ════ APP ════ -->
+<div id="app">
+
+<div class="header">
+  <div class="header-row">
+    <span class="header-ship">🚢</span>
+    <div class="header-title" id="hdr-title">MSC 榮耀號 · 登船須知</div>
+    <div class="header-date">6 / 18</div>
+  </div>
+</div>
+
+<div class="lang-bar">
+  <span class="lang-label">語言 · Bahasa</span>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">🇹🇼 中文</button>
+    <button class="lang-btn" id="btn-id" onclick="setLang('id')">🇮🇩 Indonesia</button>
+  </div>
+  <div class="font-toggle">
+    <button class="font-btn" onclick="adjustFont(-1)">A-</button>
+    <button class="font-btn" onclick="adjustFont(1)">A+</button>
+  </div>
+</div>
+
+<div class="progress" id="prog"></div>
+
+<div class="slides-outer">
+<div class="slides" id="slides">
+
+  <!-- ① 海關檢疫 -->
+  <div class="slide">
+    <div class="slide-head">
+      <span class="slide-head-ico">🛃</span>
+      <div>
+        <div class="slide-head-title" data-zh="海關檢疫" data-id="Pemeriksaan Bea Cukai">海關檢疫</div>
+        <div class="slide-head-sub" data-zh="入出境規定，違反將被重罰" data-id="Peraturan masuk/keluar, pelanggar didenda berat">入出境規定，違反將被重罰</div>
+      </div>
+    </div>
+    <div class="slide-body">
+      <div class="customs">
+        <div class="ci red"><div class="ci-ico">🍖🥦🍎</div><div><div class="ci-t" data-zh="肉類・蔬果・農產品" data-id="Daging · Sayuran · Produk Pertanian">肉類・蔬果・農產品</div><div class="ci-s"><span data-zh="入出境嚴禁攜帶" data-id="Dilarang keras dibawa masuk/keluar">入出境嚴禁攜帶</span><br><b data-zh="罰款 3,000 ～ 300 萬元台幣" data-id="Denda TWD 3.000 ～ 3.000.000">罰款 3,000 ～ 300 萬元台幣</b></div></div></div>
+        <div class="ci am"><div class="ci-ico">🚬</div><div><div class="ci-t" data-zh="菸：僅限攜帶 1 條" data-id="Rokok: Maksimal 1 Slop">菸：僅限攜帶 1 條</div><div class="ci-s" data-zh="電子菸品禁止攜帶入境台灣" data-id="Rokok elektrik dilarang masuk ke Taiwan">電子菸品禁止攜帶入境台灣</div></div></div>
+        <div class="ci am"><div class="ci-ico">💵</div><div><div class="ci-t" data-zh="現金：上限 $10,000 美元" data-id="Uang Tunai: Maks. $10.000 USD">現金：上限 $10,000 美元</div><div class="ci-s" data-zh="超過需向海關申報" data-id="Lebih dari itu harus dilaporkan ke bea cukai">超過需向海關申報</div></div></div>
+      </div>
+      <div class="card red"><span class="card-ico">🚨</span><div><div class="card-title" data-zh="從日本帶回台灣也一樣禁止！" data-id="Membawa dari Jepang ke Taiwan juga dilarang!">從日本帶回台灣也一樣禁止！</div><div class="card-desc" data-zh="在沖繩購買的蔬果、肉類，不能帶回船上或帶回台灣。" data-id="Sayuran dan daging yang dibeli di Okinawa tidak boleh dibawa ke kapal atau Taiwan.">在沖繩購買的蔬果、肉類，不能帶回船上或帶回台灣。</div></div></div>
+    </div>
+  </div>
+
+  <!-- ② 安全檢查 -->
+  <div class="slide">
+    <div class="slide-head"><span class="slide-head-ico">🔍</span><div><div class="slide-head-title" data-zh="安全檢查" data-id="Pemeriksaan Keamanan">安全檢查</div><div class="slide-head-sub" data-zh="查到沒收，離船才還" data-id="Disita saat ditemukan, dikembalikan saat turun">查到沒收，離船才還</div></div></div>
+    <div class="slide-body">
+      <div class="card gray"><span class="card-ico">🧳</span><div><div class="card-title" data-zh="手提行李可攜帶物" data-id="Barang Wajib di Bagasi Kabin">手提行李可攜帶物</div><div class="card-desc" data-zh="藥品、電腦、相機、貴重物品必須放手提行李，不可託運。" data-id="Obat-obatan, laptop, kamera, dan barang berharga wajib dibawa di bagasi kabin, tidak boleh di-check-in.">藥品、電腦、相機、貴重物品必須放手提行李，不可託運。</div></div></div>
+      <div class="card amber"><span class="card-ico">⚠️</span><div><div class="card-title" data-zh="禁止攜帶液體 &amp; 生鮮食物上船" data-id="Dilarang bawa cairan &amp; makanan segar ke kapal">禁止攜帶液體 &amp; 生鮮食物上船</div><div class="card-desc" data-zh="個人護理品（洗髮精、沐浴乳、面霜）、藥品、兒童食品不在此限。" data-id="Produk perawatan (sampo, sabun, krim), obat, makanan bayi tidak termasuk larangan.">個人護理品（洗髮精、沐浴乳、面霜）、藥品、兒童食品不在此限。</div></div></div>
+      <div class="stitle red" data-zh="🚫 查到沒收，離船才還" data-id="🚫 Disita, dikembalikan saat turun kapal">🚫 查到沒收，離船才還</div>
+      <div class="pills">
+        <div class="pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 24" width="16" height="14" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="3" y="6" width="11" height="9" rx="3" fill="#7a0000"/><polygon points="14,7.5 20,5 20,16 14,14" fill="#a33"/><rect x="7" y="15" width="3.5" height="6" rx="1.5" fill="#7a0000"/><line x1="22" y1="8" x2="25" y2="7" stroke="#a33" stroke-width="1.5" stroke-linecap="round"/></svg><span data-zh="吹風機" data-id="Hair Dryer">吹風機</span></div>
+        <div class="pill">🌀 <span data-zh="捲髮器" data-id="Catokan">捲髮器</span></div>
+        <div class="pill">👔 <span data-zh="熨斗" data-id="Setrika">熨斗</span></div>
+        <div class="pill">🔌 <span data-zh="延長線" data-id="Kabel Ekstensi">延長線</span></div>
+        <div class="pill">🔪 <span data-zh="任何刀具" data-id="Semua Pisau">任何刀具</span></div>
+        <div class="pill">🛴 <span data-zh="電動滑板車" data-id="Skuter Listrik">電動滑板車</span></div>
+        <div class="pill">📻 <span data-zh="對講機" data-id="Walkie-Talkie">對講機</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 行李規定 -->
+  <div class="slide">
+    <div class="slide-head">
+      <span class="slide-head-ico">🧳</span>
+      <div>
+        <div class="slide-head-title" data-zh="行李規定" data-id="Aturan Bagasi">行李規定</div>
+        <div class="slide-head-sub" data-zh="每人限額，超過將不受理" data-id="Batas per orang, melebihi tidak diterima">每人限額，超過將不受理</div>
+      </div>
+    </div>
+    <div class="slide-body">
+
+      <div class="stitle amber" data-zh="🧳 托運行李（每人）" data-id="🧳 Bagasi Check-in (per orang)">🧳 托運行李（每人）</div>
+      <div class="card amber">
+        <span class="card-ico">📦</span>
+        <div>
+          <div class="card-title" data-zh="最多 2 件" data-id="Maksimal 2 koper">最多 2 件</div>
+          <div class="card-desc">
+            <b data-zh="尺寸：" data-id="Ukuran: ">尺寸：</b><span data-zh="每件不超過 90 × 75 × 43 公分" data-id="Setiap koper tidak melebihi 90 × 75 × 43 cm">每件不超過 90 × 75 × 43 公分</span><br>
+            <b data-zh="重量：" data-id="Berat: ">重量：</b><span data-zh="每件不超過 23 公斤" data-id="Setiap koper tidak melebihi 23 kg">每件不超過 23 公斤</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stitle blue" data-zh="👜 手提行李（每人）" data-id="👜 Bagasi Kabin (per orang)">👜 手提行李（每人）</div>
+      <div class="card blue">
+        <span class="card-ico">🎒</span>
+        <div>
+          <div class="card-title" data-zh="最多 2 件" data-id="Maksimal 2 tas">最多 2 件</div>
+          <div class="card-desc">
+            <b data-zh="尺寸：" data-id="Ukuran: ">尺寸：</b><span data-zh="每件不超過 56 × 45 × 25 公分" data-id="Setiap tas tidak melebihi 56 × 45 × 25 cm">每件不超過 56 × 45 × 25 公分</span><br>
+            <b data-zh="重量：" data-id="Berat: ">重量：</b><span data-zh="每件不超過 23 公斤" data-id="Setiap tas tidak melebihi 23 kg">每件不超過 23 公斤</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stitle green" data-zh="💡 貼心建議" data-id="💡 Tips">💡 貼心建議</div>
+      <div class="card green">
+        <span class="card-ico">💧</span>
+        <div>
+          <div class="card-title" data-zh="建議自備飲用水放托運行李" data-id="Disarankan bawa air minum di bagasi check-in">建議自備飲用水放托運行李</div>
+          <div class="card-desc" data-zh="若擔心船上的水喝不習慣，可自行準備瓶裝水放置於托運行李箱內攜帶上船。" data-id="Jika khawatir tidak terbiasa dengan air di kapal, bisa membawa air minum kemasan dalam koper check-in.">若擔心船上的水喝不習慣，可自行準備瓶裝水放置於托運行李箱內攜帶上船。</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ④ 衛生盥洗 -->
+  <div class="slide">
+    <div class="slide-head"><span class="slide-head-ico">🚿</span><div><div class="slide-head-title" data-zh="衛生盥洗用品" data-id="Perlengkapan Mandi">衛生盥洗用品</div><div class="slide-head-sub" data-zh="有提供什麼？要自己帶什麼？" data-id="Apa yang tersedia? Apa yang harus dibawa?">有提供什麼？要自己帶什麼？</div></div></div>
+    <div class="slide-body">
+      <div class="stitle green" data-zh="✅ 艙房有提供" data-id="✅ Tersedia di Kamar">✅ 艙房有提供</div>
+      <div class="igrid c4">
+        <div class="ig ok"><div class="ig-ico">🛁</div><div class="ig-lbl" data-zh="大小毛巾" data-id="Handuk">大小毛巾</div></div>
+        <div class="ig ok"><div class="ig-ico">🧴</div><div class="ig-lbl" data-zh="洗髮精" data-id="Sampo">洗髮精</div></div>
+        <div class="ig ok"><div class="ig-ico">🧼</div><div class="ig-lbl" data-zh="沐浴乳" data-id="Sabun Mandi">沐浴乳</div></div>
+        <div class="ig ok"><div class="ig-ico">💨</div><div class="ig-lbl" data-zh="吹風機" data-id="Hair Dryer">吹風機</div></div>
+      </div>
+      <div class="stitle red" data-zh="❌ 沒有提供，自己要帶！" data-id="❌ Tidak tersedia, bawa sendiri!">❌ 沒有提供，自己要帶！</div>
+      <div class="igrid c4">
+        <div class="ig no"><div class="ig-ico">🪥</div><div class="ig-lbl" data-zh="牙刷牙膏" data-id="Sikat Gigi">牙刷牙膏</div></div>
+        <div class="ig no"><div class="ig-ico">🧖</div><div class="ig-lbl" data-zh="洗面乳" data-id="Pembersih Wajah">洗面乳</div></div>
+        <div class="ig no"><div class="ig-ico">🩴</div><div class="ig-lbl" data-zh="拖鞋" data-id="Sandal">拖鞋</div></div>
+        <div class="ig no"><div class="ig-ico">🪒</div><div class="ig-lbl" data-zh="刮鬍刀" data-id="Alat Cukur">刮鬍刀</div></div>
+      </div>
+      <div class="card blue"><span class="card-ico">🔌</span><div><div class="card-title" data-zh="插座電壓：110V &amp; 220V" data-id="Tegangan Listrik: 110V &amp; 220V">插座電壓：110V &amp; 220V</div><div class="card-desc" data-zh="台灣插頭可直接使用，不需準備轉換插頭。" data-id="Colokan Taiwan bisa langsung digunakan, tidak perlu adaptor.">台灣插頭可直接使用，不需準備轉換插頭。</div></div></div>
+    </div>
+  </div>
+
+  <!-- ④ 衣著建議 -->
+  <div class="slide">
+    <div class="slide-head"><span class="slide-head-ico">👔</span><div><div class="slide-head-title" data-zh="衣著建議" data-id="Panduan Berpakaian">衣著建議</div><div class="slide-head-sub" data-zh="進主餐廳有穿著規定，請注意！" data-id="Ada aturan berpakaian di restoran utama!">進主餐廳有穿著規定，請注意！</div></div></div>
+    <div class="slide-body">
+      <div class="card gray"><span class="card-ico">🌅</span><div><div class="card-title" data-zh="白天 / 岸上觀光" data-id="Siang Hari / Wisata Darat">白天 / 岸上觀光</div><div class="card-desc" data-zh="輕便休閒即可，短褲、長褲、運動服均可。" data-id="Pakaian kasual santai, celana pendek atau panjang boleh.">輕便休閒即可，短褲、長褲、運動服均可。</div></div></div>
+      <div class="card blue"><span class="card-ico">🍽️</span><div><div class="card-title" data-zh="進主餐廳（晚餐）最低標準" data-id="Standar Minimum Masuk Restoran Utama">進主餐廳（晚餐）最低標準</div><div class="card-desc"><span data-zh="👨 男士：" data-id="👨 Pria: ">👨 男士：</span><b data-zh="長褲 ＋ 襯衫" data-id="Celana panjang + kemeja">長褲 ＋ 襯衫</b><br><span data-zh="👩 女士：" data-id="👩 Wanita: ">👩 女士：</span><b data-zh="裙裝 / 洋裝 / 長褲" data-id="Rok / Gaun / Celana panjang">裙裝 / 洋裝 / 長褲</b></div></div></div>
+      <div class="stitle red" data-zh="❌ 主餐廳不可穿著" data-id="❌ Dilarang di Restoran Utama">❌ 主餐廳不可穿著</div>
+      <div class="igrid">
+        <div class="ig no"><div class="ig-ico">🩳</div><div class="ig-lbl" data-zh="短褲" data-id="Celana Pendek">短褲</div><div class="ig-sub" data-zh="不可入場" data-id="Dilarang">不可入場</div></div>
+        <div class="ig no"><div class="ig-ico">👕</div><div class="ig-lbl" data-zh="背心/汗衫" data-id="Tanktop/Singlet">背心/汗衫</div><div class="ig-sub" data-zh="不可入場" data-id="Dilarang">不可入場</div></div>
+        <div class="ig no"><div class="ig-ico">🩴</div><div class="ig-lbl" data-zh="拖鞋/涼鞋" data-id="Sandal Jepit">拖鞋/涼鞋</div><div class="ig-sub" data-zh="不可入場" data-id="Dilarang">不可入場</div></div>
+      </div>
+      <div class="divider"></div>
+      <div class="stitle amber" data-zh="🎉 特別主題派對" data-id="🎉 Pesta Tema Spesial">🎉 特別主題派對</div>
+      <div class="igrid c2">
+        <div class="ig ok" style="justify-content:flex-start;padding-top:12px;">
+          <div style="height:34px;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 36 24" width="36" height="24" style="border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,0.25);display:block;">
+              <rect x="0"  y="0" width="12" height="24" fill="#009246"/>
+              <rect x="12" y="0" width="12" height="24" fill="#ffffff"/>
+              <rect x="24" y="0" width="12" height="24" fill="#ce2b37"/>
+            </svg>
+          </div>
+          <div class="ig-lbl" data-zh="義大利之夜" data-id="Malam Italia">義大利之夜</div>
+          <div class="ig-sub" data-zh="綠・白・紅色服裝" data-id="Hijau, putih, merah">綠・白・紅色服裝</div>
+        </div>
+        <div class="ig ok" style="justify-content:flex-start;padding-top:12px;">
+          <div style="height:34px;display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:26px;line-height:1;">🤍</span>
+          </div>
+          <div class="ig-lbl" data-zh="白色派對" data-id="Pesta Putih">白色派對</div>
+          <div class="ig-sub" data-zh="建議穿白色衣服" data-id="Disarankan pakaian putih">建議穿白色衣服</div>
+        </div>
+      </div>
+      <div class="hint" data-zh="實際日期以船上每日公告為準" data-id="Tanggal sesuai pengumuman harian di kapal">實際日期以船上每日公告為準</div>
+    </div>
+  </div>
+
+  <!-- ⑤ 無現金 -->
+  <div class="slide">
+    <div class="slide-head"><span class="slide-head-ico">💳</span><div><div class="slide-head-title" data-zh="無現金航遊" data-id="Pembayaran Cashless">無現金航遊</div><div class="slide-head-sub" data-zh="登船後記得綁定信用卡！" data-id="Daftar kartu kredit setelah naik kapal!">登船後記得綁定信用卡！</div></div></div>
+    <div class="slide-body">
+      <div class="card navy"><span class="card-ico">✨</span><div><div class="card-title" data-zh="船上消費全部免付現金" data-id="Semua Transaksi Tanpa Uang Tunai">船上消費全部免付現金</div><div class="card-desc" data-zh="所有消費只需簽名，帳款自動記入艙房帳單，下船前統一結清。" data-id="Cukup tanda tangan, tagihan otomatis dicatat, dilunasi sebelum turun.">所有消費只需簽名，帳款自動記入艙房帳單，下船前統一結清。</div></div></div>
+      <div class="stitle" data-zh="登船後三步驟完成綁定" data-id="3 Langkah Daftar Setelah Naik Kapal">登船後三步驟完成綁定</div>
+      <div class="flow">
+        <div class="flow-row"><div class="flow-num">1</div><div class="flow-box" data-zh="到 5 / 6 樓找自動刷卡機器" data-id="Pergi ke mesin otomatis lantai 5 / 6">到 5 / 6 樓找自動刷卡機器</div></div>
+        <div class="flow-row"><div class="flow-num">2</div><div class="flow-box" data-zh="將信用卡與船卡綁定" data-id="Daftarkan kartu kredit ke Cruise Card">將信用卡與船卡綁定</div></div>
+        <div class="flow-row"><div class="flow-num">3</div><div class="flow-box" data-zh="下船前確認消費明細無誤" data-id="Periksa rincian tagihan sebelum turun">下船前確認消費明細無誤</div></div>
+      </div>
+      <div class="card amber"><span class="card-ico">💵</span><div><div class="card-title" data-zh="沒有信用卡？預存現金押金" data-id="Tidak punya kartu kredit? Setor deposit tunai">沒有信用卡？預存現金押金</div><div class="card-desc"><span data-zh="至服務櫃台預存，每人最低 " data-id="Setor ke resepsionis, min. ">至服務櫃台預存，每人最低 </span><b>USD 150</b><span data-zh="。未用完離船前可取回美金現金。" data-id=" per orang. Sisa bisa diambil kembali dalam USD.">。未用完離船前可取回美金現金。</span></div></div></div>
+      <div class="card gray"><span class="card-ico">🧾</span><div><div class="card-title" data-zh="所有收據保留至少 6 個月" data-id="Simpan Semua Struk Minimal 6 Bulan">所有收據保留至少 6 個月</div><div class="card-desc" data-zh="帳款有疑問，請離船前至 5 樓賓客服務中心確認。" data-id="Pertanyaan tagihan? Konfirmasi ke Pusat Layanan Tamu lantai 5.">帳款有疑問，請離船前至 5 樓賓客服務中心確認。</div></div></div>
+    </div>
+  </div>
+
+  <!-- ⑥ 抽菸攝影 -->
+  <div class="slide">
+    <div class="slide-head"><span class="slide-head-ico">🚬</span><div><div class="slide-head-title" data-zh="抽菸規定 &amp; 攝影禮儀" data-id="Aturan Merokok &amp; Etika Foto">抽菸規定 &amp; 攝影禮儀</div><div class="slide-head-sub" data-zh="艙房抽菸直接罰款，嚴重者提早離船" data-id="Merokok di kamar langsung didenda">艙房抽菸直接罰款，嚴重者提早離船</div></div></div>
+    <div class="slide-body">
+      <div class="big-warn"><div class="big-warn-ico">🚬</div><div><div class="big-warn-title" data-zh="艙房內抽菸 → 直接罰款！" data-id="Merokok di Kamar → Langsung Didenda!">艙房內抽菸 → 直接罰款！</div><div class="big-warn-desc"><span data-zh="一經確認，立即罰款。" data-id="Setelah terkonfirmasi, langsung didenda. ">一經確認，立即罰款。</span><b data-zh="屢勸不聽者，船方有權要求提早離船。" data-id="Terus dilanggar, kapal berhak minta turun lebih awal.">屢勸不聽者，船方有權要求提早離船。</b></div></div></div>
+      <div class="card red"><span class="card-ico">🚫</span><div><div class="card-title" data-zh="所有室內公共區域全面禁菸" data-id="Seluruh Area Publik Dalam Ruangan Bebas Rokok">所有室內公共區域全面禁菸</div><div class="card-desc" data-zh="走廊、所有餐廳、劇院、大廳等室內空間一律禁止。" data-id="Koridor, semua restoran, teater, lobi — semua ruang dalam dilarang.">走廊、所有餐廳、劇院、大廳等室內空間一律禁止。</div></div></div>
+      <div class="stitle green" data-zh="✅ 合法吸菸區（僅限以下地點）" data-id="✅ Area Merokok yang Diizinkan">✅ 合法吸菸區（僅限以下地點）</div>
+      <div class="igrid">
+        <div class="ig ok"><div class="ig-ico">🎰</div><div class="ig-lbl" data-zh="賭場右舷" data-id="Sisi Kanan Kasino">賭場右舷</div><div class="ig-sub" data-zh="僅限玩老虎機時" data-id="Hanya saat main slot">僅限玩老虎機時</div></div>
+        <div class="ig ok"><div class="ig-ico">🏖️</div><div class="ig-lbl" data-zh="戶外甲板指定區" data-id="Dek Luar Khusus">戶外甲板指定區</div><div class="ig-sub" data-zh="以船上公告為準" data-id="Sesuai pengumuman">以船上公告為準</div></div>
+        <div class="ig no"><div class="ig-ico">🃏</div><div class="ig-lbl" data-zh="賭場牌桌左舷" data-id="Sisi Kiri Meja">賭場牌桌左舷</div><div class="ig-sub" data-zh="牌桌區域禁菸" data-id="Dilarang merokok">牌桌區域禁菸</div></div>
+      </div>
+      <div class="card amber"><span class="card-ico">🚯</span><div><div class="card-title" data-zh="禁止將菸蒂丟入海中！" data-id="Dilarang Buang Puntung ke Laut!">禁止將菸蒂丟入海中！</div><div class="card-desc" data-zh="請使用工作人員提供的菸灰缸。" data-id="Gunakan asbak yang disediakan petugas.">請使用工作人員提供的菸灰缸。</div></div></div>
+      <div class="divider"></div>
+      <div class="stitle" data-zh="📷 攝影禮儀" data-id="📷 Etika Fotografi">📷 攝影禮儀</div>
+      <div class="igrid">
+        <div class="ig ok"><div class="ig-ico">📸</div><div class="ig-lbl" data-zh="拍照 ✅" data-id="Foto ✅">拍照 ✅</div><div class="ig-sub" data-zh="可以，尊重隱私" data-id="Boleh, hormati privasi">可以，尊重隱私</div></div>
+        <div class="ig ok"><div class="ig-ico">🎥</div><div class="ig-lbl" data-zh="一般錄影 ✅" data-id="Video Biasa ✅">一般錄影 ✅</div><div class="ig-sub" data-zh="可以，尊重隱私" data-id="Boleh, hormati privasi">可以，尊重隱私</div></div>
+        <div class="ig no"><div class="ig-ico">🎬</div><div class="ig-lbl" data-zh="表演時錄影 ❌" data-id="Rekam Pertunjukan ❌">表演時錄影 ❌</div><div class="ig-sub" data-zh="著作權規定禁止" data-id="Dilarang hak cipta">著作權規定禁止</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑦ DAY3 回船倒數 -->
+  <div class="slide">
+    <div class="slide-head" style="background:linear-gradient(135deg,#6b0000,#a32d2d);">
+      <span class="slide-head-ico">⏱️</span>
+      <div>
+        <div class="slide-head-title" data-zh="沖繩回船時間提醒" data-id="Pengingat Waktu Kembali ke Kapal">沖繩回船時間提醒</div>
+        <div class="slide-head-sub" data-zh="DAY 3（6/20）· 請務必在時間前回到碼頭！" data-id="DAY 3 (6/20) · Pastikan kembali ke dermaga tepat waktu!">DAY 3（6/20）· 請務必在時間前回到碼頭！</div>
+      </div>
+    </div>
+    <div class="slide-body">
+
+      <!-- 倒數計時器 -->
+      <div class="countdown-wrap" id="cdWrap">
+        <div class="countdown-label" id="cdLabel">距離建議回船時間還有</div>
+        <div class="countdown-time" id="cdTime">--:--:--</div>
+        <div class="countdown-sub" id="cdSub">正在計算中...</div>
+      </div>
+
+      <!-- 時間區間說明 -->
+      <div class="countdown-target">
+        <div class="ct-item ok-zone" style="flex:1.2">
+          <div class="ct-time">11:00</div>
+          <div class="ct-label" data-zh="✅ 建議回船時間" data-id="✅ Waktu Kembali Ideal">✅ 建議回船時間</div>
+        </div>
+        <div class="ct-item warn-zone">
+          <div class="ct-time">12:00</div>
+          <div class="ct-label" data-zh="⚠️ 最晚警示" data-id="⚠️ Batas Peringatan">⚠️ 最晚警示</div>
+        </div>
+        <div class="ct-item danger-zone">
+          <div class="ct-time">13:00</div>
+          <div class="ct-label" data-zh="🚨 絕對截止" data-id="🚨 Batas Mutlak">🚨 絕對截止</div>
+        </div>
+      </div>
+
+      <div class="big-warn" style="margin-top:2px;">
+        <div class="big-warn-ico">🚢</div>
+        <div>
+          <div class="big-warn-title" data-zh="13:00 船準時開走，不等人！" data-id="Jam 13:00 Kapal Berangkat, Tidak Menunggu!">13:00 船準時開走，不等人！</div>
+          <div class="big-warn-desc" data-zh="遲到造成無法登船的所有費用與問題，由旅客自行負責。請至少 11:00 前回到碼頭。" data-id="Keterlambatan yang menyebabkan tidak bisa naik kapal menjadi tanggung jawab penumpang. Harap kembali sebelum jam 11:00.">遲到造成無法登船的所有費用與問題，由旅客自行負責。請至少 11:00 前回到碼頭。</div>
+        </div>
+      </div>
+
+      <div class="card amber">
+        <span class="card-ico">📍</span>
+        <div>
+          <div class="card-title" data-zh="DAY 2（6/19）沖繩抵達" data-id="DAY 2 (6/19) Tiba di Okinawa">DAY 2（6/19）沖繩抵達</div>
+          <div class="card-desc" data-zh="13:30 靠港，全天自由活動，當晚停泊那霸港口過夜，無回船時間限制。" data-id="Merapat 13:30, bebas seharian, menginap di pelabuhan Naha, tidak ada batasan waktu kembali.">13:30 靠港，全天自由活動，當晚停泊那霸港口過夜，無回船時間限制。</div>
+        </div>
+      </div>
+
+      <!-- 一鍵加入行事曆 -->
+      <button onclick="addToCalendar()" style="
+        width:100%;padding:14px;border-radius:14px;border:none;cursor:pointer;
+        background:linear-gradient(135deg,#0a2a5e,#185FA5);
+        color:white;font-size:15px;font-weight:700;
+        display:flex;align-items:center;justify-content:center;gap:8px;
+        box-shadow:0 4px 14px rgba(10,42,94,0.35);
+        transition:transform 0.15s;
+      " ontouchstart="this.style.transform='scale(0.97)'" ontouchend="this.style.transform='scale(1)'">
+        <span style="font-size:20px;">📅</span>
+        <span id="cal-btn-text">加入行事曆提醒（10:30 起床準備回船）</span>
+      </button>
+
+      <div class="done">
+        <div class="done-ico">🎉</div>
+        <div class="done-title" data-zh="全部閱讀完畢！" data-id="Selesai Dibaca!">全部閱讀完畢！</div>
+        <div class="done-sub" data-zh="恭喜完成所有登船須知！祝您沖繩郵輪之旅愉快 🚢" data-id="Selamat! Kamu sudah membaca semua panduan. Selamat berlayar ke Okinawa! 🚢">恭喜完成所有登船須知！祝您沖繩郵輪之旅愉快 🚢</div>
+
+        <!-- 安裝到桌面區塊 - 永遠顯示 -->
+        <div id="install-section" style="margin-top:20px;">
+
+          <!-- Android / Chrome 安裝按鈕 -->
+          <div id="android-install" style="display:none;">
+            <button id="install-btn" onclick="doInstall()" style="
+              width:100%;padding:16px;border-radius:14px;border:none;cursor:pointer;
+              background:linear-gradient(135deg,#0a2a5e,#185FA5);
+              color:white;font-size:16px;font-weight:700;
+              display:flex;align-items:center;justify-content:center;gap:10px;
+              box-shadow:0 6px 20px rgba(10,42,94,0.4);
+            ">
+              <span style="font-size:22px;">📲</span>
+              <span id="install-btn-text" data-zh="加到手機桌面（像APP一樣）" data-id="Pasang ke Layar Utama">加到手機桌面（像APP一樣）</span>
+            </button>
+            <div style="font-size:11.5px;color:#888;margin-top:8px;text-align:center;" id="install-hint">
+              加到桌面後，直接點圖示就能開啟，不用找 LINE 連結！
+            </div>
+          </div>
+
+          <!-- iOS Safari 教學 -->
+          <div id="ios-install" style="display:none;">
+            <div style="background:#E6F1FB;border-radius:14px;padding:14px;text-align:left;">
+              <div style="font-size:14px;font-weight:700;color:#0a2a5e;margin-bottom:10px;">📲 <span id="ios-title" data-zh="加到主畫面（iPhone 教學）" data-id="Cara Pasang ke iPhone">加到主畫面（iPhone 教學）</span></div>
+              <div style="font-size:13.5px;color:#185FA5;line-height:2.1;" id="ios-steps">
+                1️⃣ 點底部 <b>「分享」按鈕 □↑</b><br>
+                2️⃣ 向下滑找到 <b>「加入主畫面」</b><br>
+                3️⃣ 點右上角 <b>「新增」</b><br>
+                ✅ 桌面就會出現 🚢 圖示！
+              </div>
+            </div>
+          </div>
+
+          <!-- 通用教學（非手機或已安裝） -->
+          <div id="generic-install">
+            <div style="background:#EAF3DE;border-radius:14px;padding:14px;text-align:left;">
+              <div style="font-size:14px;font-weight:700;color:#27500A;margin-bottom:10px;">📲 <span id="generic-title" data-zh="加到手機桌面，像 APP 一樣使用" data-id="Pasang ke Layar Utama Seperti APP">加到手機桌面，像 APP 一樣使用</span></div>
+              <div style="font-size:13px;color:#3B6D11;line-height:2;" id="generic-steps">
+                🤖 <b>Android：</b>Chrome 右上角 ⋮ → 「新增至主畫面」<br>
+                🍎 <b>iPhone：</b>Safari 底部 □↑ → 「加入主畫面」
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- /slides -->
+</div><!-- /slides-outer -->
+
+<div class="bottom-nav">
+  <button class="nav-btn btn-prev" id="btn-prev" onclick="prev()" disabled>◀</button>
+  <button class="nav-btn btn-next" id="btn-next" onclick="next()">
+    <span id="next-lbl">下一個主題 →</span>
+  </button>
+</div>
+
+</div><!-- /app -->
+
+<script>
+// ════ STARS ════
+(function(){
+  const c=document.getElementById('stars');
+  for(let i=0;i<80;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    const size=Math.random()*2.5+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;top:${Math.random()*70}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*5}s;--min:${0.1+Math.random()*0.3};`;
+    c.appendChild(s);
+  }
+  // Moon reflection
+  // moon reflection positioned via CSS
+})();
+
+// ════ SPLASH ════
+let splashDone=false;
+function exitSplash(){
+  if(splashDone)return;
+  splashDone=true;
+  playHornSound();
+  document.getElementById('splash').classList.add('splash-exit');
+  const app=document.getElementById('app');
+  app.classList.add('visible');
+  setTimeout(()=>document.getElementById('splash').remove(),800);
+  startCountdown();
+}
+
+// ════ 聲音系統 ════
+// 船笛聲（Gemini 方法：鋸齒波+方波+低通濾波）
+function playSoundHornWav(){
+  try{
+    const ctx = getAudioCtx();
+    ctx.resume().then(()=>{
+      const t = ctx.currentTime;
+      const rev = makeSoundReverb(ctx, 1.5, 0.3);
+      const frequencies = [120, 240, 360, 480];
+      const volumes     = [0.5, 0.4, 0.25, 0.1];
+      frequencies.forEach((f, i) => {
+        const o = ctx.createOscillator();
+        o.type = i % 2 === 0 ? 'sawtooth' : 'square';
+        o.frequency.setValueAtTime(f, t);
+        o.frequency.linearRampToValueAtTime(f * 0.96, t + 2.5);
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 1200;
+        filter.Q.value = 1;
+        const g = ctx.createGain();
+        const vol = volumes[i];
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(vol, t + 0.15);
+        g.gain.setValueAtTime(vol, t + 1.8);
+        g.gain.linearRampToValueAtTime(0, t + 2.6);
+        o.connect(filter);
+        filter.connect(g);
+        g.connect(ctx.destination);
+        g.connect(rev);
+        o.start(t);
+        o.stop(t + 2.7);
+      });
+    });
+  } catch(e){ console.log('Horn error:', e); }
+}
+
+// Web Audio：粉噪音（海浪用）
+function makePinkNoise(ctx,dur){
+  const len=ctx.sampleRate*dur;
+  const buf=ctx.createBuffer(1,len,ctx.sampleRate);
+  const d=buf.getChannelData(0);
+  let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
+  for(let i=0;i<len;i++){
+    const w=Math.random()*2-1;
+    b0=0.99886*b0+w*0.0555179; b1=0.99332*b1+w*0.0750759;
+    b2=0.96900*b2+w*0.1538520; b3=0.86650*b3+w*0.3104856;
+    b4=0.55000*b4+w*0.5329522; b5=-0.7616*b5-w*0.0168980;
+    d[i]=(b0+b1+b2+b3+b4+b5+b6+w*0.5362)*0.11; b6=w*0.115926;
+  }
+  return buf;
+}
+
+function makeSoundReverb(ctx,dur,wet){
+  const len=ctx.sampleRate*dur;
+  const buf=ctx.createBuffer(2,len,ctx.sampleRate);
+  for(let ch=0;ch<2;ch++){
+    const d=buf.getChannelData(ch);
+    for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2);
+  }
+  const rev=ctx.createConvolver(); rev.buffer=buf;
+  const g=ctx.createGain(); g.gain.value=wet;
+  rev.connect(g); g.connect(ctx.destination);
+  return rev;
+}
+
+function seagullCry(ctx,start,freqHigh,freqLow,vol,dur){
+  const rev=makeSoundReverb(ctx,1.8,0.45);
+  const o1=ctx.createOscillator(); o1.type='sine';
+  o1.frequency.setValueAtTime(freqHigh,start);
+  o1.frequency.linearRampToValueAtTime(freqLow,start+dur);
+  const o2=ctx.createOscillator(); o2.type='sine';
+  o2.frequency.setValueAtTime(freqHigh*1.5,start);
+  o2.frequency.linearRampToValueAtTime(freqLow*1.5,start+dur);
+  const g1=ctx.createGain();
+  g1.gain.setValueAtTime(0,start);
+  g1.gain.linearRampToValueAtTime(vol,start+0.025);
+  g1.gain.setValueAtTime(vol,start+dur*0.72);
+  g1.gain.linearRampToValueAtTime(0,start+dur);
+  const g2=ctx.createGain();
+  g2.gain.setValueAtTime(0,start);
+  g2.gain.linearRampToValueAtTime(vol*0.14,start+0.025);
+  g2.gain.linearRampToValueAtTime(0,start+dur);
+  o1.connect(g1); g1.connect(ctx.destination); g1.connect(rev);
+  o2.connect(g2); g2.connect(ctx.destination);
+  o1.start(start); o1.stop(start+dur+0.05);
+  o2.start(start); o2.stop(start+dur+0.05);
+}
+
+function makeOcean(ctx,t,dur){
+  const baseVol=0.22,swell=2.0;
+  const src=ctx.createBufferSource();
+  src.buffer=makePinkNoise(ctx,dur+0.5);
+  const filt=ctx.createBiquadFilter();
+  filt.type='bandpass'; filt.frequency.value=550; filt.Q.value=0.55;
+  const mainG=ctx.createGain();
+  mainG.gain.setValueAtTime(0,t);
+  mainG.gain.linearRampToValueAtTime(baseVol,t+1.0);
+  mainG.gain.linearRampToValueAtTime(baseVol*swell,t+2.7);
+  mainG.gain.linearRampToValueAtTime(baseVol*swell*0.8,t+3.0);
+  mainG.gain.linearRampToValueAtTime(baseVol,t+4.7);
+  mainG.gain.setValueAtTime(baseVol,t+dur-0.6);
+  mainG.gain.linearRampToValueAtTime(0,t+dur);
+  src.connect(filt); filt.connect(mainG); mainG.connect(ctx.destination);
+  src.start(t);
+  const fSrc=ctx.createBufferSource();
+  fSrc.buffer=makePinkNoise(ctx,dur+0.5);
+  const fF=ctx.createBiquadFilter(); fF.type='highpass'; fF.frequency.value=1600;
+  const fG=ctx.createGain();
+  fG.gain.setValueAtTime(0,t);
+  fG.gain.linearRampToValueAtTime(0.04,t+1.2);
+  fG.gain.setValueAtTime(0.04,t+dur-0.5);
+  fG.gain.linearRampToValueAtTime(0,t+dur);
+  fSrc.connect(fF); fF.connect(fG); fG.connect(ctx.destination);
+  fSrc.start(t);
+  setTimeout(()=>{try{src.stop();fSrc.stop();}catch(e){}}, (dur+0.8)*1000);
+}
+
+function playSoundOcean(ctx){
+  const t=ctx.currentTime;
+  const dur=5.5;
+  makeOcean(ctx,t,dur);
+  seagullCry(ctx,t+1.6, 1100,800, 0.17,0.22);
+  seagullCry(ctx,t+2.0, 1050,760, 0.15,0.20);
+  seagullCry(ctx,t+2.4, 1150,820, 0.12,0.18);
+}
+
+function getAudioCtx(){
+  if(!window._mscAudioCtx || window._mscAudioCtx.state==='closed'){
+    window._mscAudioCtx = new (window.AudioContext||window.webkitAudioContext)();
+  }
+  return window._mscAudioCtx;
+}
+
+function playHornSound(){
+  try{
+    if(Math.random() < 0.5){
+      // 版本A：WAV 船笛（原生播放，不悶）
+      playSoundHornWav();
+    } else {
+      // 版本B：海鷗 + 海浪（Web Audio API）
+      const ctx = getAudioCtx();
+      ctx.resume().then(()=> playSoundOcean(ctx));
+    }
+  } catch(e){ console.log('Audio not supported:',e); }
+}
+// Auto-exit after 4.5s
+setTimeout(exitSplash, 4500);
+
+// ════ APP LOGIC ════
+const ICONS=['🛃','🔍','🧳','🚿','👔','💳','🚬','⏱️'];
+const TZH=['海關','安全','行李','盥洗','衣著','無現金','抽菸','回船'];
+const TID=['Cukai','Aman','Bagasi','Mandi','Pakaian','Bayar','Rokok','Waktu'];
+let cur=0, lang='zh';
+const N=8;
+
+// 閱讀進度記憶
+// 用 sessionStorage 判斷是否為「同一次開啟」
+// 全新開啟 → 從第0頁開始；同次閱讀中途關掉重開 → 繼續上次
+const isNewSession = !sessionStorage.getItem('msc-session');
+if(isNewSession){
+  sessionStorage.setItem('msc-session','1');
+  localStorage.removeItem('msc-page'); // 清掉上次紀錄
+  cur = 0;
+} else {
+  const saved = parseInt(localStorage.getItem('msc-page')||'0');
+  if(saved > 0 && saved < N) cur = saved;
+}
+
+function buildProg(){
+  const bar=document.getElementById('prog');bar.innerHTML='';
+  const topics=lang==='zh'?TZH:TID;
+  for(let i=0;i<N;i++){
+    const w=document.createElement('div');w.className='dot-wrap';w.onclick=()=>{triggerHaptic();go(i);};
+    const d=document.createElement('div');
+    d.className='dot'+(i===cur?' active':i<cur?' done':i===cur+1?' next-dot':'');
+    d.innerHTML=i<cur?'✓':ICONS[i];
+    const l=document.createElement('div');
+    l.className='dot-lbl'+(i===cur?' active':'');
+    l.textContent=topics[i];
+    w.appendChild(d);w.appendChild(l);bar.appendChild(w);
+  }
+  setTimeout(()=>{
+    const dots=document.querySelectorAll('.dot-wrap');
+    if(dots[cur])dots[cur].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  },50);
+}
+
+function go(i){
+  cur=i;
+  document.getElementById('slides').style.transform=`translateX(-${cur*100}%)`;
+  localStorage.setItem('msc-page',cur);
+  buildProg();updateNav();detectDevice();updateiOSText();updateGenericText();initFont();
+// 初始觸發第一頁動效
+setTimeout(()=>{
+  const first = document.querySelectorAll('.slide')[cur];
+  if(first){
+    first.classList.add('entering-slide');
+    setTimeout(()=> first.classList.remove('entering-slide'), 800);
+  }
+}, 200);
+
+setupPWA();
+  document.querySelectorAll('.slide')[cur].scrollTop=0;
+}
+function triggerHaptic(){
+  if(navigator.vibrate) navigator.vibrate(12);
+}
+function next(){triggerHaptic();if(cur<N-1)go(cur+1);}
+function prev(){triggerHaptic();if(cur>0)go(cur-1);}
+
+function updateNav(){
+  document.getElementById('btn-prev').disabled=cur===0;
+  const btn=document.getElementById('btn-next');
+  const lbl=document.getElementById('next-lbl');
+  if(cur===N-1){
+    btn.className='nav-btn btn-next last';
+    lbl.textContent=lang==='zh'?'✅ 閱讀完畢！':'✅ Selesai!';
+  }else{
+    btn.className='nav-btn btn-next';
+    lbl.textContent=lang==='zh'?'下一個主題 →':'Topik Berikutnya →';
+  }
+}
+
+function setLang(l){
+  localStorage.setItem('msc-lang', l);
+  lang=l;
+  document.getElementById('btn-zh').className='lang-btn'+(l==='zh'?' active':'');
+  document.getElementById('btn-id').className='lang-btn'+(l==='id'?' active':'');
+  // update splash tap hint
+  const tt=document.getElementById('tap-text');
+  if(tt)tt.textContent=l==='zh'?'點擊任意處開始':'Ketuk untuk mulai';
+  applyLang();buildProg();updateNav();detectDevice();updateiOSText();updateGenericText();
+  const calBtn = document.getElementById('cal-btn-text');
+  if(calBtn) calBtn.textContent = l==='zh'
+    ? '加入行事曆提醒（10:30 起床準備回船）'
+    : 'Tambah Pengingat Kalender (10:30 Siap Kembali)';initFont();
+// 初始觸發第一頁動效
+setTimeout(()=>{
+  const first = document.querySelectorAll('.slide')[cur];
+  if(first){
+    first.classList.add('entering-slide');
+    setTimeout(()=> first.classList.remove('entering-slide'), 800);
+  }
+}, 200);
+updateCdLabels();
+}
+
+function applyLang(){
+  document.querySelectorAll('[data-zh]').forEach(el=>{
+    el.textContent=lang==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-id');
+  });
+}
+
+// ════ COUNTDOWN ════
+// DAY3 = 2026-06-20, target 11:00 JST (UTC+9) = 02:00 UTC
+// JST is UTC+9, target 11:00 JST = 11:00+09:00
+const TARGET_IDEAL   = new Date('2026-06-20T11:00:00+09:00');
+const TARGET_WARN    = new Date('2026-06-20T12:00:00+09:00');
+const TARGET_DANGER  = new Date('2026-06-20T13:00:00+09:00');
+
+function updateCdLabels(){
+  const el=document.getElementById('cdLabel');
+  const sub=document.getElementById('cdSub');
+  if(!el)return;
+  const now=new Date();
+  if(now>=TARGET_DANGER){
+    el.textContent=lang==='zh'?'船已離港':'Kapal sudah berangkat';
+    if(sub)sub.textContent=lang==='zh'?'DAY 3 6/20 已結束':'DAY 3 6/20 sudah selesai';
+  }else if(now>=TARGET_WARN){
+    el.textContent=lang==='zh'?'⚠️ 距離絕對截止時間':'⚠️ Waktu batas mutlak';
+  }else{
+    el.textContent=lang==='zh'?'距離建議回船時間（11:00）還有':'Waktu tersisa menuju jam kembali (11:00)';
+  }
+}
+
+function startCountdown(){
+  function tick(){
+    const now=new Date();
+    const cdTime=document.getElementById('cdTime');
+    const cdSub=document.getElementById('cdSub');
+    if(!cdTime)return;
+
+    let target=TARGET_IDEAL;
+    let colorClass='';
+    let subMsg='';
+
+    if(now>=TARGET_DANGER){
+      cdTime.textContent='已截止';
+      cdTime.className='countdown-time danger';
+      if(cdSub)cdSub.textContent=lang==='zh'?'13:00 已到，希望您已平安上船！':'Jam 13:00 sudah lewat, semoga sudah naik kapal!';
+      updateCdLabels();
+      return;
+    }else if(now>=TARGET_WARN){
+      target=TARGET_DANGER;
+      colorClass='danger';
+      subMsg=lang==='zh'?'🚨 已超過建議時間！距絕對截止 13:00 還有：':'🚨 Sudah lewat waktu ideal! Sisa waktu ke 13:00:';
+    }else if(now>=TARGET_IDEAL){
+      target=TARGET_DANGER;
+      colorClass='warn';
+      subMsg=lang==='zh'?'⚠️ 已超過 11:00！請盡快回船，截止 13:00':'⚠️ Sudah lewat 11:00! Segera kembali, batas 13:00';
+    }else{
+      target=TARGET_IDEAL;
+      colorClass='';
+      subMsg=lang==='zh'?'✅ 請在 11:00 前回到碼頭登船':'✅ Kembali ke dermaga sebelum jam 11:00';
+    }
+
+    const diff=target-now;
+    const h=Math.floor(diff/3600000);
+    const m=Math.floor((diff%3600000)/60000);
+    const s=Math.floor((diff%60000)/1000);
+    const pad=n=>String(n).padStart(2,'0');
+    cdTime.textContent=`${pad(h)}:${pad(m)}:${pad(s)}`;
+    cdTime.className='countdown-time'+( colorClass?' '+colorClass:'');
+    if(cdSub)cdSub.textContent=subMsg;
+    updateCdLabels();
+  }
+  tick();
+  setInterval(tick,1000);
+}
+
+// ════ SWIPE ════
+let tx=0;
+const sw=document.querySelector('.slides-outer');
+sw.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+sw.addEventListener('touchend',e=>{
+  const d=tx-e.changedTouches[0].clientX;
+  if(Math.abs(d)>50){if(d>0&&cur<N-1)next();else if(d<0&&cur>0)prev();}
+},{passive:true});
+
+// ════ TOAST ════
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// ════ PWA SETUP ════
+function setupPWA() {
+  // 用 Canvas 生成郵輪 APP 圖示
+  const canvas = document.createElement('canvas');
+  canvas.width = 512; canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+
+  // 背景漸層
+  const bg = ctx.createLinearGradient(0, 0, 512, 512);
+  bg.addColorStop(0, '#040d1e');
+  bg.addColorStop(0.5, '#0a2a5e');
+  bg.addColorStop(1, '#1558a0');
+  ctx.fillStyle = bg;
+  roundRect(ctx, 0, 0, 512, 512, 80);
+  ctx.fill();
+
+  // 星星
+  ctx.fillStyle = 'rgba(255,255,255,0.7)';
+  [[60,80],[120,40],[200,60],[300,30],[400,70],[450,50],[80,140],[350,100]].forEach(([x,y]) => {
+    ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+  });
+
+  // 月亮
+  const moon = ctx.createRadialGradient(420, 80, 5, 420, 80, 45);
+  moon.addColorStop(0, '#fffde0'); moon.addColorStop(1, '#e8b840');
+  ctx.fillStyle = moon;
+  ctx.beginPath(); ctx.arc(420, 80, 38, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = 'rgba(245,216,100,0.2)';
+  ctx.beginPath(); ctx.arc(420, 80, 55, 0, Math.PI*2); ctx.fill();
+
+  // 海浪
+  ctx.fillStyle = '#0d3a6e';
+  ctx.beginPath(); ctx.moveTo(0,370); ctx.quadraticCurveTo(128,340,256,360); ctx.quadraticCurveTo(384,380,512,355); ctx.lineTo(512,512); ctx.lineTo(0,512); ctx.fill();
+  ctx.fillStyle = '#1a5099';
+  ctx.beginPath(); ctx.moveTo(0,400); ctx.quadraticCurveTo(100,380,256,395); ctx.quadraticCurveTo(400,410,512,388); ctx.lineTo(512,512); ctx.lineTo(0,512); ctx.fill();
+
+  // 船體
+  ctx.fillStyle = '#1a3a6e';
+  ctx.beginPath();
+  ctx.moveTo(60,350); ctx.lineTo(80,270); ctx.lineTo(432,270); ctx.lineTo(452,350); ctx.closePath(); ctx.fill();
+
+  // 船底
+  ctx.fillStyle = '#0d2548';
+  ctx.beginPath(); ctx.moveTo(60,350); ctx.quadraticCurveTo(256,375,452,350); ctx.lineTo(440,368); ctx.quadraticCurveTo(256,390,72,368); ctx.closePath(); ctx.fill();
+
+  // 甲板層1
+  ctx.fillStyle = '#1e4a8a';
+  ctx.fillRect(75, 235, 362, 38);
+
+  // 甲板層2
+  ctx.fillStyle = '#1d488c';
+  ctx.fillRect(95, 200, 322, 38);
+
+  // 甲板層3（頂層）
+  ctx.fillStyle = '#205090';
+  ctx.fillRect(130, 168, 252, 35);
+
+  // 舷窗 - 層1
+  ctx.fillStyle = 'rgba(255,240,160,0.9)';
+  [110,145,180,215,250,285,320,355,390].forEach(x => {
+    ctx.beginPath(); ctx.arc(x, 254, 9, 0, Math.PI*2); ctx.fill();
+  });
+
+  // 舷窗 - 層2
+  [120,158,196,234,272,310,348,386].forEach(x => {
+    ctx.beginPath(); ctx.arc(x, 219, 8, 0, Math.PI*2); ctx.fill();
+  });
+
+  // 舷窗 - 層3
+  [155,190,225,260,295,330,365].forEach(x => {
+    ctx.beginPath(); ctx.arc(x, 186, 7, 0, Math.PI*2); ctx.fill();
+  });
+
+  // 煙囪左
+  ctx.fillStyle = '#c8970a';
+  ctx.fillRect(168, 128, 38, 45);
+  ctx.fillStyle = '#daa820';
+  ctx.beginPath(); ctx.ellipse(187, 128, 20, 7, 0, 0, Math.PI*2); ctx.fill();
+
+  // 煙囪右
+  ctx.fillStyle = '#c8970a';
+  ctx.fillRect(306, 128, 38, 45);
+  ctx.fillStyle = '#daa820';
+  ctx.beginPath(); ctx.ellipse(325, 128, 20, 7, 0, 0, Math.PI*2); ctx.fill();
+
+  // MSC 字樣
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.font = 'bold 28px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('MSC BELLISSIMA', 256, 336);
+
+  // 旗幟
+  ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(256, 90); ctx.lineTo(256, 168); ctx.stroke();
+  ctx.fillStyle = '#e63946';
+  ctx.beginPath(); ctx.moveTo(256,90); ctx.lineTo(280,102); ctx.lineTo(256,114); ctx.fill();
+
+  const iconUrl = canvas.toDataURL('image/png');
+
+  // 設定 Apple touch icon
+  const appleIcon = document.getElementById('apple-icon');
+  if(appleIcon) appleIcon.href = iconUrl;
+
+  // 注入 manifest
+  const manifestData = {
+    name: 'MSC榮耀號 登船須知',
+    short_name: 'MSC登船須知',
+    description: 'MSC榮耀號沖繩郵輪旅遊登船須知',
+    start_url: './',
+    display: 'standalone',
+    background_color: '#0a1628',
+    theme_color: '#0a1628',
+    orientation: 'portrait',
+    icons: [
+      { src: iconUrl, sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
+      { src: iconUrl, sizes: '192x192', type: 'image/png' }
+    ]
+  };
+  const blob = new Blob([JSON.stringify(manifestData)], {type:'application/manifest+json'});
+  const manifestUrl = URL.createObjectURL(blob);
+  const link = document.createElement('link');
+  link.rel = 'manifest'; link.href = manifestUrl;
+  document.head.appendChild(link);
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+}
+
+// ════ 字體大小 ════
+let fontSize = parseInt(localStorage.getItem('msc-fontsize') || '14');
+document.documentElement.style.setProperty('--base-font', fontSize+'px');
+
+function adjustFont(delta){
+  triggerHaptic();
+  fontSize = Math.min(20, Math.max(12, fontSize + delta));
+  localStorage.setItem('msc-fontsize', fontSize);
+  // 套用到 card-desc, card-title, ci-s, ig-lbl 等
+  document.querySelectorAll('.card-desc,.ci-s,.ig-sub,.hint,.done-sub').forEach(el=>{
+    el.style.fontSize = (fontSize - 1.5)+'px';
+  });
+  document.querySelectorAll('.card-title,.ci-t,.ig-lbl,.flow-box,.stitle').forEach(el=>{
+    el.style.fontSize = (fontSize + 1)+'px';
+  });
+  showToast(fontSize <= 12 ? '最小了！' : fontSize >= 20 ? '最大了！' : (delta > 0 ? '字體放大 👍' : '字體縮小'));
+}
+
+// 初始化字體
+function initFont(){
+  if(fontSize !== 14){
+    document.querySelectorAll('.card-desc,.ci-s,.ig-sub,.hint,.done-sub').forEach(el=>{
+      el.style.fontSize = (fontSize - 1.5)+'px';
+    });
+    document.querySelectorAll('.card-title,.ci-t,.ig-lbl,.flow-box,.stitle').forEach(el=>{
+      el.style.fontSize = (fontSize + 1)+'px';
+    });
+  }
+}
+
+// ════ 行事曆 ════
+function addToCalendar(){
+  triggerHaptic();
+  // DAY3 2026/06/20 提醒 10:30 JST (+09:00)
+  // ICS 格式用 UTC 時間：10:30 JST = 01:30 UTC
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//MSC郵輪//登船須知//ZH',
+    'BEGIN:VEVENT',
+    'UID:msc-okinawa-return-20260620@bellissima',
+    'DTSTAMP:20260618T000000Z',
+    'DTSTART:20260620T013000Z',
+    'DTEND:20260620T020000Z',
+    'SUMMARY:🚢 記得回船！11:00前到碼頭',
+    'DESCRIPTION:MSC榮耀號 DAY3 沖繩\n請於 11:00 前回到那霸港碼頭登船\n⚠️ 13:00 船準時開走，不等人！',
+    'LOCATION:那霸港 Naha Port\, Okinawa\, Japan',
+    'BEGIN:VALARM',
+    'TRIGGER:-PT0M',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:🚢 現在要出發回碼頭了！11:00前要到！',
+    'END:VALARM',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+
+  const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'MSC沖繩回船提醒.ics';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  showToast(lang==='zh' ? '📅 已加入行事曆！' : '📅 Berhasil ditambahkan ke kalender!');
+}
+
+// ════ SW ════
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./sw.js')
+    .then(() => console.log('SW registered'))
+    .catch(e => console.log('SW error', e));
+}
+
+// ════ INSTALL ════
+let deferredPrompt = null;
+
+// 偵測裝置類型，決定顯示哪個安裝說明
+function detectDevice() {
+  const ua = navigator.userAgent;
+  const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  const isAndroid = /Android/.test(ua);
+  const isStandalone = window.navigator.standalone === true ||
+                       window.matchMedia('(display-mode: standalone)').matches;
+
+  const androidEl  = document.getElementById('android-install');
+  const iosEl      = document.getElementById('ios-install');
+  const genericEl  = document.getElementById('generic-install');
+
+  if(isStandalone) {
+    // 已安裝 - 隱藏所有安裝UI
+    if(androidEl)  androidEl.style.display  = 'none';
+    if(iosEl)      iosEl.style.display       = 'none';
+    if(genericEl)  genericEl.style.display   = 'none';
+  } else if(isIOS) {
+    // iPhone - 顯示 Safari 教學
+    if(androidEl)  androidEl.style.display  = 'none';
+    if(iosEl)      iosEl.style.display       = 'block';
+    if(genericEl)  genericEl.style.display   = 'none';
+    updateiOSText();
+  } else if(deferredPrompt) {
+    // Android Chrome - 顯示一鍵安裝按鈕
+    if(androidEl)  androidEl.style.display  = 'block';
+    if(iosEl)      iosEl.style.display       = 'none';
+    if(genericEl)  genericEl.style.display   = 'none';
+  } else {
+    // 其他 - 顯示通用教學
+    if(androidEl)  androidEl.style.display  = 'none';
+    if(iosEl)      iosEl.style.display       = 'none';
+    if(genericEl)  genericEl.style.display   = 'block';
+    updateGenericText();
+  }
+}
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  detectDevice(); // re-evaluate now we have the prompt
+});
+
+window.addEventListener('appinstalled', () => {
+  showToast('✅ ' + (lang==='zh' ? '已成功加到桌面！' : 'Berhasil dipasang!'));
+  detectDevice();
+});
+
+async function doInstall() {
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const result = await deferredPrompt.userChoice;
+  if(result.outcome === 'accepted') {
+    showToast(lang==='zh' ? '✅ 安裝成功！' : '✅ Berhasil dipasang!');
+  }
+  deferredPrompt = null;
+  detectDevice();
+}
+
+function updateiOSText() {
+  const t = document.getElementById('ios-title');
+  const s = document.getElementById('ios-steps');
+  if(t) t.textContent = lang==='zh' ? '加到主畫面（iPhone 教學）' : 'Cara Pasang ke iPhone';
+  if(s) s.innerHTML = lang==='zh'
+    ? '1️⃣ 點底部 <b>「分享」按鈕 □↑</b><br>2️⃣ 向下滑找到 <b>「加入主畫面」</b><br>3️⃣ 點右上角 <b>「新增」</b><br>✅ 桌面就會出現 🚢 圖示！'
+    : '1️⃣ Tap <b>「Bagikan」□↑</b> di bawah<br>2️⃣ Cari <b>「Tambahkan ke Layar Utama」</b><br>3️⃣ Tap <b>「Tambah」</b><br>✅ Ikon 🚢 muncul di layar utama!';
+}
+
+function updateGenericText() {
+  const t = document.getElementById('generic-title');
+  const s = document.getElementById('generic-steps');
+  if(t) t.textContent = lang==='zh' ? '加到手機桌面，像 APP 一樣使用' : 'Pasang ke Layar Utama Seperti APP';
+  if(s) s.innerHTML = lang==='zh'
+    ? '🤖 <b>Android：</b>Chrome 右上角 ⋮ → 「新增至主畫面」<br>🍎 <b>iPhone：</b>Safari 底部 □↑ → 「加入主畫面」'
+    : '🤖 <b>Android：</b>Chrome ⋮ → 「Tambahkan ke Layar Utama」<br>🍎 <b>iPhone：</b>Safari □↑ → 「Tambahkan ke Layar Utama」';
+}
+
+function detectiOS() { detectDevice(); }  // alias
+
+// ════ INIT ════
+buildProg();updateNav();
+// Restore saved page
+if(cur>0){
+  document.getElementById('slides').style.transform=`translateX(-${cur*100}%)`;
+  document.getElementById('slides').style.transition='none';
+  setTimeout(()=>document.getElementById('slides').style.transition='',100);
+}
+// Start countdown if already visible
+if(splashDone) startCountdown();
+</script>
+</body>
+</html>
