@@ -1,4 +1,4 @@
-const CACHE = 'msc-guide-v3';
+const CACHE = 'msc-guide-v4';
 const FILES = ['./', './index.html'];
 
 self.addEventListener('install', e => {
