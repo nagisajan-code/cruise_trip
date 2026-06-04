@@ -1165,16 +1165,18 @@ let TID=['Cukai Aman','Bagasi','Mandi','Pakaian','Bayar','Rokok','Waktu'];
 let cur=0, lang='zh';
 const N=7;
 
-// ── 判斷日期，如果是 6/20 將「回船」移至最前面 ──
+// ── 判斷日期，6/20 將「回船」同步移至最前面 ──
 const today = new Date();
-if (today.getFullYear() === 2026 && today.getMonth() === 5 && today.getDate() === 20) {
-  // 1. 調整陣列內容（將第 7 項移至第 1 項）
+const isReturnDay = (today.getFullYear() === 2026 && today.getMonth() === 5 && today.getDate() === 20);
+
+if (isReturnDay) {
+  // 1. 調整陣列 (讓最上方導覽列的圖示與文字改變順序)
   const moveLastToFirst = (arr) => [arr[6], ...arr.slice(0, 6)];
   ICONS = moveLastToFirst(ICONS);
   TZH = moveLastToFirst(TZH);
   TID = moveLastToFirst(TID);
 
-  // 2. 同步調整 DOM 中的 Slide 順序（只在這裡精準執行一次！）
+  // 2. 同步調整 DOM (讓下方的實體內容頁面跟著調換)
   const slidesContainer = document.getElementById('slides');
   const slideEls = slidesContainer.querySelectorAll('.slide');
   if (slideEls.length === 7) {
@@ -1182,14 +1184,19 @@ if (today.getFullYear() === 2026 && today.getMonth() === 5 && today.getDate() ==
   }
 }
 
+// 3. 檢查記憶狀態，防止陣列順序變換後，舊的頁面記憶導致錯位
+const savedDayStatus = localStorage.getItem('msc-is-return-day') === 'true';
 const isNewSession = !sessionStorage.getItem('msc-session');
-if(isNewSession){
-  sessionStorage.setItem('msc-session','1');
+
+// 若剛好跨越日期導致介面順序改變，直接重置回到第一頁
+if (isNewSession || savedDayStatus !== isReturnDay) {
+  sessionStorage.setItem('msc-session', '1');
+  localStorage.setItem('msc-is-return-day', isReturnDay); // 更新今日狀態
   localStorage.removeItem('msc-page'); 
   cur = 0;
 } else {
   const saved = parseInt(localStorage.getItem('msc-page')||'0');
-  if(saved > 0 && saved < N) cur = saved;
+  if (saved > 0 && saved < N) cur = saved;
 }
 
 function buildProg(){
