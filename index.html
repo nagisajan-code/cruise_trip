@@ -79,9 +79,6 @@ body{
   50%{box-shadow:0 0 40px 18px rgba(245,216,100,0.45),0 0 80px 30px rgba(245,216,100,0.2);}
 }
 
-/* 月光倒影 */
-/* moon reflection removed */
-
 /* 海鷗 */
 .seagull{
   position:absolute;
@@ -172,9 +169,9 @@ body{
 }
 @keyframes pulseDot{0%,100%{transform:scale(1);opacity:0.4;}50%{transform:scale(1.6);opacity:1;}}
 
-/* 淡出動� */
-#keyframes splashFadeOut{to{opacity:0;pointer-events:none;}}
-.splash-exit{animation:splashFadeOut 0.7s forwards ease-in!;}
+/* 淡出動 */
+@keyframes splashFadeOut{to{opacity:0;pointer-events:none;}}
+.splash-exit{animation:splashFadeOut 0.7s forwards ease-in!important;}
 
 /* ════════════════════════════════
    MAIN APP
@@ -464,16 +461,6 @@ body{
 .slide.entering-slide .slide-body > *:nth-child(9)  { animation: staggerIn 0.4s 0.45s both ease-out; }
 .slide.entering-slide .slide-body > *:nth-child(10) { animation: staggerIn 0.4s 0.50s both ease-out; }
 
-
-
-
-
-
-
-
-
-.slide.entering-slide .slide-body > *:nth-child(10) { animation: staggerIn 0.45s 0.60s both ease-out; }
-
 @keyframes staggerIn {
   from { transform:translateY(16px); }
   to   { transform:translateY(0); }
@@ -489,21 +476,16 @@ body{
 .hint{font-size:11px;color:#888;text-align:center;padding:1px 0;}
 </style>
 <link rel="apple-touch-icon" id="apple-icon" href="">
-<!-- horn WAV removed, using Web Audio instead -->
 </head>
 <body>
 
-<!-- ════ SPLASH ════ -->
 <div id="splash" onclick="exitSplash()">
 
-  <!-- 星空 -->
   <div class="stars" id="stars"></div>
 
-  <!-- 月亮 -->
   <div class="moon"></div>
 
 
-  <!-- 海鷗 -->
   <div class="seagull" style="--spd:14s;--delay:2s;top:22%;--ty:-10px;--ty2:15px;">
     <svg width="28" height="12" viewBox="0 0 28 12"><path d="M0 6 Q7 0 14 4 Q21 0 28 6" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round"/></svg>
   </div>
@@ -514,26 +496,17 @@ body{
     <svg width="16" height="7" viewBox="0 0 16 7"><path d="M0 3.5 Q4 0 8 2.5 Q12 0 16 3.5" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.3" stroke-linecap="round"/></svg>
   </div>
 
-  <!-- 大型郵輪 SVG -->
   <div class="ship-wrap">
     <svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;filter:drop-shadow(0 12px 30px rgba(0,0,0,0.6));">
-      <!-- 船體主體 -->
       <path d="M20 110 L30 80 L310 80 L320 110 Z" fill="#1a3a6e" stroke="#2a5a9e" stroke-width="1"/>
-      <!-- 船底弧形 -->
       <path d="M20 110 Q170 135 320 110 L310 125 Q170 148 30 125 Z" fill="#0d2548" stroke="#1a3a6e" stroke-width="0.5"/>
-      <!-- 船體下部高光 -->
       <path d="M25 112 Q170 132 315 112" fill="none" stroke="rgba(100,160,255,0.25)" stroke-width="2"/>
-      <!-- 水線 -->
       <path d="M18 118 Q170 138 322 118" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
 
-      <!-- 主甲板 -->
       <rect x="28" y="68" width="284" height="14" rx="2" fill="#1e4a8a" stroke="#2a5aaa" stroke-width="0.8"/>
-      <!-- 甲板欄杆線 -->
       <line x1="30" y1="72" x2="310" y2="72" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
 
-      <!-- 艙房層 1（最低層） -->
       <rect x="40" y="48" width="260" height="22" rx="3" fill="#1a4080" stroke="#2a55a5" stroke-width="0.7"/>
-      <!-- 艙房層 1 舷窗 -->
       <g fill="rgba(255,240,160,0.8)">
         <circle cx="60"  cy="59" r="4.5"/>
         <circle cx="82"  cy="59" r="4.5"/>
@@ -547,7 +520,6 @@ body{
         <circle cx="258" cy="59" r="4.5"/>
         <circle cx="280" cy="59" r="4.5"/>
       </g>
-      <!-- 舷窗光暈 -->
       <g fill="rgba(255,240,160,0.15)">
         <circle cx="60"  cy="59" r="7"/>
         <circle cx="104" cy="59" r="7"/>
@@ -557,9 +529,7 @@ body{
         <circle cx="280" cy="59" r="7"/>
       </g>
 
-      <!-- 艙房層 2 -->
       <rect x="50" y="30" width="240" height="20" rx="3" fill="#1d488c" stroke="#2d5aac" stroke-width="0.7"/>
-      <!-- 艙房層 2 舷窗 -->
       <g fill="rgba(255,240,160,0.75)">
         <circle cx="70"  cy="40" r="4"/>
         <circle cx="92"  cy="40" r="4"/>
@@ -573,7 +543,6 @@ body{
         <circle cx="268" cy="40" r="4"/>
       </g>
 
-      <!-- 艙房層 3（頂層） -->
       <rect x="70" y="16" width="200" height="16" rx="3" fill="#205090" stroke="#3060b0" stroke-width="0.7"/>
       <g fill="rgba(255,240,160,0.7)">
         <circle cx="90"  cy="24" r="3.5"/>
@@ -587,31 +556,24 @@ body{
         <circle cx="250" cy="24" r="3.5"/>
       </g>
 
-      <!-- 煙囪 左 -->
       <rect x="108" y="2" width="24" height="18" rx="4" fill="#c8970a" stroke="#a07008" stroke-width="1"/>
       <rect x="110" y="2" width="8" height="18" rx="2" fill="rgba(255,255,255,0.1)"/>
       <ellipse cx="120" cy="3" rx="12" ry="3" fill="#daa820" stroke="#a07008" stroke-width="0.8"/>
-      <!-- 煙囪 右 -->
       <rect x="208" y="2" width="24" height="18" rx="4" fill="#c8970a" stroke="#a07008" stroke-width="1"/>
       <rect x="210" y="2" width="8" height="18" rx="2" fill="rgba(255,255,255,0.1)"/>
       <ellipse cx="220" cy="3" rx="12" ry="3" fill="#daa820" stroke="#a07008" stroke-width="0.8"/>
 
-      <!-- 駕駛台 -->
       <rect x="140" y="8" width="60" height="12" rx="3" fill="#1a3566" stroke="#2a4588" stroke-width="0.8"/>
-      <!-- 駕駛台窗戶 -->
       <g fill="rgba(120,200,255,0.6)" stroke="rgba(180,220,255,0.4)" stroke-width="0.5">
         <rect x="145" y="11" width="10" height="6" rx="1"/>
         <rect x="159" y="11" width="10" height="6" rx="1"/>
         <rect x="173" y="11" width="10" height="6" rx="1"/>
-								<rect x="187" y="11" width="10" height="6" rx="1"/>
+        <rect x="187" y="11" width="10" height="6" rx="1"/>
       </g>
 
-      <!-- 船頭 -->
       <path d="M310 80 L320 110 L330 118 Q335 112 320 80Z" fill="#152e5a" stroke="#1a3a6e" stroke-width="0.5"/>
-      <!-- 船尾 -->
       <path d="M30 80 L20 110 L10 118 Q5 112 20 80Z" fill="#152e5a" stroke="#1a3a6e" stroke-width="0.5"/>
 
-      <!-- 欄杆豎條 -->
       <g stroke="rgba(255,255,255,0.25)" stroke-width="0.8">
         <line x1="45"  y1="68" x2="45"  y2="48"/>
         <line x1="75"  y1="68" x2="75"  y2="48"/>
@@ -624,14 +586,11 @@ body{
         <line x1="285" y1="68" x2="285" y2="48"/>
       </g>
 
-      <!-- 旗幟 -->
       <line x1="170" y1="1" x2="170" y2="16" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
       <polygon points="170,1 182,5 170,9" fill="#e63946" opacity="0.9"/>
 
-      <!-- 船體反光 -->
       <path d="M28 85 Q170 78 312 85" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
 
-      <!-- 水花 -->
       <g fill="rgba(255,255,255,0.25)">
         <ellipse cx="22" cy="120" rx="14" ry="3"/>
         <ellipse cx="318" cy="120" rx="14" ry="3"/>
@@ -639,12 +598,10 @@ body{
         <ellipse cx="280" cy="130" rx="8"  ry="2"/>
       </g>
 
-      <!-- MSC 字樣 -->
       <text x="170" y="100" text-anchor="middle" font-size="11" font-weight="900" fill="rgba(255,255,255,0.55)" font-family="Arial,sans-serif" letter-spacing="3">MSC BELLISSIMA</text>
     </svg>
   </div>
 
-  <!-- 海浪 -->
   <div class="waves">
     <div class="wave wave1"></div>
     <div class="wave wave2"></div>
@@ -652,7 +609,6 @@ body{
     <div class="wave wave4"></div>
   </div>
 
-  <!-- 標題 -->
   <div class="splash-content">
     <div class="splash-title">MSC 榮耀號<br>登船須知</div>
     <div class="splash-en">BOARDING GUIDE</div>
@@ -667,12 +623,8 @@ body{
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-
-
-<!-- ════ APP ════ -->
 <div id="app">
 
 <div class="header">
@@ -690,6 +642,7 @@ body{
     <button class="lang-btn" id="btn-id" onclick="setLang('id')">🇮🇩 Indonesia</button>
   </div>
   <div class="font-toggle">
+    <button class="font-btn" id="btn-sound" onclick="toggleSound()" style="margin-right: 3px;">🔊</button>
     <button class="font-btn" onclick="adjustFont(-1)">A-</button>
     <button class="font-btn" onclick="adjustFont(1)">A+</button>
   </div>
@@ -700,7 +653,6 @@ body{
 <div class="slides-outer">
 <div class="slides" id="slides">
 
-  <!-- ① 海關檢疫 -->
   <div class="slide">
     <div class="slide-head">
       <span class="slide-head-ico">🛃</span>
@@ -719,7 +671,6 @@ body{
     </div>
   </div>
 
-  <!-- ② 安全檢查 -->
   <div class="slide">
     <div class="slide-head"><span class="slide-head-ico">🔍</span><div><div class="slide-head-title" data-zh="安全檢查" data-id="Pemeriksaan Keamanan">安全檢查</div><div class="slide-head-sub" data-zh="查到沒收，離船才還" data-id="Disita saat ditemukan, dikembalikan saat turun">查到沒收，離船才還</div></div></div>
     <div class="slide-body">
@@ -738,7 +689,6 @@ body{
     </div>
   </div>
 
-  <!-- ③ 行李規定 -->
   <div class="slide">
     <div class="slide-head">
       <span class="slide-head-ico">🧳</span>
@@ -785,7 +735,6 @@ body{
     </div>
   </div>
 
-  <!-- ④ 衛生盥洗 -->
   <div class="slide">
     <div class="slide-head"><span class="slide-head-ico">🚿</span><div><div class="slide-head-title" data-zh="衛生盥洗用品" data-id="Perlengkapan Mandi">衛生盥洗用品</div><div class="slide-head-sub" data-zh="有提供什麼？要自己帶什麼？" data-id="Apa yang tersedia? Apa yang harus dibawa?">有提供什麼？要自己帶什麼？</div></div></div>
     <div class="slide-body">
@@ -807,7 +756,6 @@ body{
     </div>
   </div>
 
-  <!-- ④ 衣著建議 -->
   <div class="slide">
     <div class="slide-head"><span class="slide-head-ico">👔</span><div><div class="slide-head-title" data-zh="衣著建議" data-id="Panduan Berpakaian">衣著建議</div><div class="slide-head-sub" data-zh="進主餐廳有穿著規定，請注意！" data-id="Ada aturan berpakaian di restoran utama!">進主餐廳有穿著規定，請注意！</div></div></div>
     <div class="slide-body">
@@ -845,7 +793,6 @@ body{
     </div>
   </div>
 
-  <!-- ⑤ 無現金 -->
   <div class="slide">
     <div class="slide-head"><span class="slide-head-ico">💳</span><div><div class="slide-head-title" data-zh="無現金航遊" data-id="Pembayaran Cashless">無現金航遊</div><div class="slide-head-sub" data-zh="登船後記得綁定信用卡！" data-id="Daftar kartu kredit setelah naik kapal!">登船後記得綁定信用卡！</div></div></div>
     <div class="slide-body">
@@ -861,7 +808,6 @@ body{
     </div>
   </div>
 
-  <!-- ⑥ 抽菸攝影 -->
   <div class="slide">
     <div class="slide-head"><span class="slide-head-ico">🚬</span><div><div class="slide-head-title" data-zh="抽菸規定 &amp; 攝影禮儀" data-id="Aturan Merokok &amp; Etika Foto">抽菸規定 &amp; 攝影禮儀</div><div class="slide-head-sub" data-zh="艙房抽菸直接罰款，嚴重者提早離船" data-id="Merokok di kamar langsung didenda">艙房抽菸直接罰款，嚴重者提早離船</div></div></div>
     <div class="slide-body">
@@ -884,7 +830,6 @@ body{
     </div>
   </div>
 
-  <!-- ⑦ DAY3 回船倒數 -->
   <div class="slide">
     <div class="slide-head" style="background:linear-gradient(135deg,#6b0000,#a32d2d);">
       <span class="slide-head-ico">⏱️</span>
@@ -895,14 +840,12 @@ body{
     </div>
     <div class="slide-body">
 
-      <!-- 倒數計時器 -->
       <div class="countdown-wrap" id="cdWrap">
         <div class="countdown-label" id="cdLabel">距離建議回船時間還有</div>
         <div class="countdown-time" id="cdTime">--:--:--</div>
         <div class="countdown-sub" id="cdSub">正在計算中...</div>
       </div>
 
-      <!-- 時間區間說明 -->
       <div class="countdown-target">
         <div class="ct-item ok-zone" style="flex:1.2">
           <div class="ct-time">11:00</div>
@@ -934,7 +877,6 @@ body{
         </div>
       </div>
 
-      <!-- 一鍵加入行事曆 -->
       <button onclick="addToCalendar()" style="
         width:100%;padding:14px;border-radius:14px;border:none;cursor:pointer;
         background:linear-gradient(135deg,#0a2a5e,#185FA5);
@@ -952,10 +894,8 @@ body{
         <div class="done-title" data-zh="全部閱讀完畢！" data-id="Selesai Dibaca!">全部閱讀完畢！</div>
         <div class="done-sub" data-zh="恭喜完成所有登船須知！祝您沖繩郵輪之旅愉快 🚢" data-id="Selamat! Kamu sudah membaca semua panduan. Selamat berlayar ke Okinawa! 🚢">恭喜完成所有登船須知！祝您沖繩郵輪之旅愉快 🚢</div>
 
-        <!-- 安裝到桌面區塊 - 永遠顯示 -->
         <div id="install-section" style="margin-top:20px;">
 
-          <!-- Android / Chrome 安裝按鈕 -->
           <div id="android-install" style="display:none;">
             <button id="install-btn" onclick="doInstall()" style="
               width:100%;padding:16px;border-radius:14px;border:none;cursor:pointer;
@@ -972,7 +912,6 @@ body{
             </div>
           </div>
 
-          <!-- iOS Safari 教學 -->
           <div id="ios-install" style="display:none;">
             <div style="background:#E6F1FB;border-radius:14px;padding:14px;text-align:left;">
               <div style="font-size:14px;font-weight:700;color:#0a2a5e;margin-bottom:10px;">📲 <span id="ios-title" data-zh="加到主畫面（iPhone 教學）" data-id="Cara Pasang ke iPhone">加到主畫面（iPhone 教學）</span></div>
@@ -985,7 +924,6 @@ body{
             </div>
           </div>
 
-          <!-- 通用教學（非手機或已安裝） -->
           <div id="generic-install">
             <div style="background:#EAF3DE;border-radius:14px;padding:14px;text-align:left;">
               <div style="font-size:14px;font-weight:700;color:#27500A;margin-bottom:10px;">📲 <span id="generic-title" data-zh="加到手機桌面，像 APP 一樣使用" data-id="Pasang ke Layar Utama Seperti APP">加到手機桌面，像 APP 一樣使用</span></div>
@@ -1002,19 +940,14 @@ body{
     </div>
   </div>
 
-</div><!-- /slides -->
-</div><!-- /slides-outer -->
-
-<div class="bottom-nav">
+</div></div><div class="bottom-nav">
   <button class="nav-btn btn-prev" id="btn-prev" onclick="prev()" disabled>◀</button>
   <button class="nav-btn btn-next" id="btn-next" onclick="next()">
     <span id="next-lbl">下一個主題 →</span>
   </button>
 </div>
 
-</div><!-- /app -->
-
-<script>
+</div><script>
 // ════ STARS ════
 (function(){
   const c=document.getElementById('stars');
@@ -1025,8 +958,6 @@ body{
     s.style.cssText=`width:${size}px;height:${size}px;top:${Math.random()*70}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*5}s;--min:${0.1+Math.random()*0.3};`;
     c.appendChild(s);
   }
-  // Moon reflection
-  // moon reflection positioned via CSS
 })();
 
 // ════ SPLASH ════
@@ -1034,7 +965,10 @@ let splashDone=false;
 function exitSplash(){
   if(splashDone)return;
   splashDone=true;
-  playHornSound();
+  
+  // 呼叫我們新寫的皮克敏合成旋律
+  playPikminStyleMelody();
+  
   document.getElementById('splash').classList.add('splash-exit');
   const app=document.getElementById('app');
   app.classList.add('visible');
@@ -1043,129 +977,18 @@ function exitSplash(){
 }
 
 // ════ 聲音系統 ════
-// 船笛聲（Gemini 方法：鋸齒波+方波+低通濾波）
-function playSoundHornWav(){
-  try{
-    const ctx = getAudioCtx();
-    ctx.resume().then(()=>{
-      const t = ctx.currentTime;
-      const rev = makeSoundReverb(ctx, 1.5, 0.3);
-      const frequencies = [120, 240, 360, 480];
-      const volumes     = [0.5, 0.4, 0.25, 0.1];
-      frequencies.forEach((f, i) => {
-        const o = ctx.createOscillator();
-        o.type = i % 2 === 0 ? 'sawtooth' : 'square';
-        o.frequency.setValueAtTime(f, t);
-        o.frequency.linearRampToValueAtTime(f * 0.96, t + 2.5);
-        const filter = ctx.createBiquadFilter();
-        filter.type = 'lowpass';
-        filter.frequency.value = 1200;
-        filter.Q.value = 1;
-        const g = ctx.createGain();
-        const vol = volumes[i];
-        g.gain.setValueAtTime(0, t);
-        g.gain.linearRampToValueAtTime(vol, t + 0.15);
-        g.gain.setValueAtTime(vol, t + 1.8);
-        g.gain.linearRampToValueAtTime(0, t + 2.6);
-        o.connect(filter);
-        filter.connect(g);
-        g.connect(ctx.destination);
-        g.connect(rev);
-        o.start(t);
-        o.stop(t + 2.7);
-      });
-    });
-  } catch(e){ console.log('Horn error:', e); }
-}
+let isMuted = localStorage.getItem('msc-muted') === 'true';
 
-// Web Audio：粉噪音（海浪用）
-function makePinkNoise(ctx,dur){
-  const len=ctx.sampleRate*dur;
-  const buf=ctx.createBuffer(1,len,ctx.sampleRate);
-  const d=buf.getChannelData(0);
-  let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
-  for(let i=0;i<len;i++){
-    const w=Math.random()*2-1;
-    b0=0.99886*b0+w*0.0555179; b1=0.99332*b1+w*0.0750759;
-    b2=0.96900*b2+w*0.1538520; b3=0.86650*b3+w*0.3104856;
-    b4=0.55000*b4+w*0.5329522; b5=-0.7616*b5-w*0.0168980;
-    d[i]=(b0+b1+b2+b3+b4+b5+b6+w*0.5362)*0.11; b6=w*0.115926;
-  }
-  return buf;
-}
-
-function makeSoundReverb(ctx,dur,wet){
-  const len=ctx.sampleRate*dur;
-  const buf=ctx.createBuffer(2,len,ctx.sampleRate);
-  for(let ch=0;ch<2;ch++){
-    const d=buf.getChannelData(ch);
-    for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2);
-  }
-  const rev=ctx.createConvolver(); rev.buffer=buf;
-  const g=ctx.createGain(); g.gain.value=wet;
-  rev.connect(g); g.connect(ctx.destination);
-  return rev;
-}
-
-function seagullCry(ctx,start,freqHigh,freqLow,vol,dur){
-  const rev=makeSoundReverb(ctx,1.8,0.45);
-  const o1=ctx.createOscillator(); o1.type='sine';
-  o1.frequency.setValueAtTime(freqHigh,start);
-  o1.frequency.linearRampToValueAtTime(freqLow,start+dur);
-  const o2=ctx.createOscillator(); o2.type='sine';
-  o2.frequency.setValueAtTime(freqHigh*1.5,start);
-  o2.frequency.linearRampToValueAtTime(freqLow*1.5,start+dur);
-  const g1=ctx.createGain();
-  g1.gain.setValueAtTime(0,start);
-  g1.gain.linearRampToValueAtTime(vol,start+0.025);
-  g1.gain.setValueAtTime(vol,start+dur*0.72);
-  g1.gain.linearRampToValueAtTime(0,start+dur);
-  const g2=ctx.createGain();
-  g2.gain.setValueAtTime(0,start);
-  g2.gain.linearRampToValueAtTime(vol*0.14,start+0.025);
-  g2.gain.linearRampToValueAtTime(0,start+dur);
-  o1.connect(g1); g1.connect(ctx.destination); g1.connect(rev);
-  o2.connect(g2); g2.connect(ctx.destination);
-  o1.start(start); o1.stop(start+dur+0.05);
-  o2.start(start); o2.stop(start+dur+0.05);
-}
-
-function makeOcean(ctx,t,dur){
-  const baseVol=0.22,swell=2.0;
-  const src=ctx.createBufferSource();
-  src.buffer=makePinkNoise(ctx,dur+0.5);
-  const filt=ctx.createBiquadFilter();
-  filt.type='bandpass'; filt.frequency.value=550; filt.Q.value=0.55;
-  const mainG=ctx.createGain();
-  mainG.gain.setValueAtTime(0,t);
-  mainG.gain.linearRampToValueAtTime(baseVol,t+1.0);
-  mainG.gain.linearRampToValueAtTime(baseVol*swell,t+2.7);
-  mainG.gain.linearRampToValueAtTime(baseVol*swell*0.8,t+3.0);
-  mainG.gain.linearRampToValueAtTime(baseVol,t+4.7);
-  mainG.gain.setValueAtTime(baseVol,t+dur-0.6);
-  mainG.gain.linearRampToValueAtTime(0,t+dur);
-  src.connect(filt); filt.connect(mainG); mainG.connect(ctx.destination);
-  src.start(t);
-  const fSrc=ctx.createBufferSource();
-  fSrc.buffer=makePinkNoise(ctx,dur+0.5);
-  const fF=ctx.createBiquadFilter(); fF.type='highpass'; fF.frequency.value=1600;
-  const fG=ctx.createGain();
-  fG.gain.setValueAtTime(0,t);
-  fG.gain.linearRampToValueAtTime(0.04,t+1.2);
-  fG.gain.setValueAtTime(0.04,t+dur-0.5);
-  fG.gain.linearRampToValueAtTime(0,t+dur);
-  fSrc.connect(fF); fF.connect(fG); fG.connect(ctx.destination);
-  fSrc.start(t);
-  setTimeout(()=>{try{src.stop();fSrc.stop();}catch(e){}}, (dur+0.8)*1000);
-}
-
-function playSoundOcean(ctx){
-  const t=ctx.currentTime;
-  const dur=5.5;
-  makeOcean(ctx,t,dur);
-  seagullCry(ctx,t+1.6, 1100,800, 0.17,0.22);
-  seagullCry(ctx,t+2.0, 1050,760, 0.15,0.20);
-  seagullCry(ctx,t+2.4, 1150,820, 0.12,0.18);
+function toggleSound() {
+  triggerHaptic();
+  isMuted = !isMuted;
+  localStorage.setItem('msc-muted', isMuted);
+  
+  document.getElementById('btn-sound').textContent = isMuted ? '🔇' : '🔊';
+  
+  const msgZh = isMuted ? '音效已關閉' : '音效已開啟';
+  const msgId = isMuted ? 'Suara dimatikan' : 'Suara dihidupkan';
+  showToast(lang === 'zh' ? msgZh : msgId);
 }
 
 function getAudioCtx(){
@@ -1175,18 +998,61 @@ function getAudioCtx(){
   return window._mscAudioCtx;
 }
 
-function playHornSound(){
-  try{
-    if(Math.random() < 0.5){
-      // 版本A：WAV 船笛（原生播放，不悶）
-      playSoundHornWav();
-    } else {
-      // 版本B：海鷗 + 海浪（Web Audio API）
-      const ctx = getAudioCtx();
-      ctx.resume().then(()=> playSoundOcean(ctx));
-    }
-  } catch(e){ console.log('Audio not supported:',e); }
+// 產生類似皮克敏風格的輕快 8-bit 旋律
+function playPikminStyleMelody(){
+  if(isMuted) return; // 靜音狀態不播放音效
+
+  try {
+    const ctx = getAudioCtx();
+    ctx.resume().then(() => {
+      const t = ctx.currentTime;
+      
+      // 定義音符頻率 (C5, D5, E5... 等)
+      const C5 = 523.25, D5 = 587.33, E5 = 659.25, F5 = 698.46;
+      const G5 = 783.99, A5 = 880.00, C6 = 1046.50;
+
+      // 樂譜陣列：[頻率, 延遲播放時間(秒), 持續時間(秒)]
+      const melody = [
+        [C5, 0.00, 0.15],
+        [E5, 0.25, 0.15],
+        [G5, 0.50, 0.15],
+        [C6, 0.75, 0.20], // 往上跳耀
+        [A5, 1.00, 0.15],
+        [G5, 1.25, 0.40], // 停頓一下
+        [C5, 1.80, 0.15],
+        [E5, 2.00, 0.15],
+        [G5, 2.20, 0.15],
+        [F5, 2.40, 0.15],
+        [D5, 2.60, 0.15],
+        [C5, 2.80, 0.60]  // 完美落地
+      ];
+
+      // 播放旋律
+      melody.forEach(([freq, delay, dur]) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        
+        // 使用 sine (正弦波) 創造類似長笛/口哨的可愛圓潤聲音
+        osc.type = 'sine'; 
+        osc.frequency.value = freq;
+
+        // 包絡線設定 (Envelope)：創造輕快、斷奏(Staccato)的彈跳感
+        gain.gain.setValueAtTime(0, t + delay);
+        gain.gain.linearRampToValueAtTime(0.25, t + delay + 0.02); // 快速漸強
+        gain.gain.exponentialRampToValueAtTime(0.01, t + delay + dur); // 帶有彈性的漸弱
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(t + delay);
+        osc.stop(t + delay + dur);
+      });
+    });
+  } catch(e) { 
+    console.log('Audio not supported:', e); 
+  }
 }
+
 // Auto-exit after 4.5s
 setTimeout(exitSplash, 4500);
 
@@ -1676,6 +1542,7 @@ function detectiOS() { detectDevice(); }  // alias
 
 // ════ INIT ════
 buildProg();updateNav();
+document.getElementById('btn-sound').textContent = isMuted ? '🔇' : '🔊';
 // Restore saved page
 if(cur>0){
   document.getElementById('slides').style.transform=`translateX(-${cur*100}%)`;
