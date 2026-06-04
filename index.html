@@ -223,69 +223,76 @@ body{
 .lang-btn{padding:4px 12px;border-radius:16px;font-size:12px;font-weight:700;border:none;cursor:pointer;color:rgba(255,255,255,0.55);background:transparent;transition:all 0.2s;}
 .lang-btn.active{background:white;color:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,0.2);}
 
-/* PROGRESS */
+/* PROGRESS (Adaptive Scaling & Larger Icons) */
 .progress{
   position:fixed;top:89px;left:0;right:0;z-index:48;
   background:rgba(255,255,255,0.88);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
-  padding:7px 10px;
-  display:flex;align-items:center;justify-content:center;gap:3px;
+  padding:12px 6px;
+  display:flex;align-items:flex-start;
+  justify-content:space-between; 
+  gap:2px;
   border-bottom:0.5px solid rgba(0,0,0,0.06);
   overflow-x:auto;scrollbar-width:none;
   scroll-snap-type:x mandatory;
-  scroll-padding:0 10px;
+  scroll-padding:0 6px;
 }
 .progress::-webkit-scrollbar{display:none;}
-.dot-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;min-width:38px;scroll-snap-align:center;}
+.dot-wrap{
+  display:flex;flex-direction:column;align-items:center;
+  gap:6px;cursor:pointer;
+  flex:1;
+  min-width:13vw; 
+  scroll-snap-align:center;
+}
 .dot{
-  width:30px;height:30px;border-radius:50%;
+  width:clamp(34px, 10.5vw, 50px); 
+  height:clamp(34px, 10.5vw, 50px);
+  border-radius:50%;
   background:#e5e7eb;display:flex;align-items:center;justify-content:center;
-  font-size:14px;transition:all 0.25s;border:2px solid transparent;
+  font-size:clamp(16px, 5vw, 24px); 
+  transition:all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border:2px solid transparent;
 }
 .dot.active{
   background:var(--navy);
   border-color:var(--gold);
-  transform:scale(1.1);
-  box-shadow:0 2px 8px rgba(10,42,94,0.35);
+  transform:scale(1.15); 
+  box-shadow:0 3px 10px rgba(10,42,94,0.35);
 }
-.dot.done{background:var(--green);color:white;font-size:12px;}
+.dot.done{
+  background:var(--green);color:white;
+  font-size:clamp(14px, 4vw, 18px);
+}
 
-/* 金色旋轉圈 - 只有下一頁 */
 .dot.next-dot {
   position:relative;
   border-color:transparent;
 }
 .dot.next-dot::before {
-  content:'';
-  position:absolute;
-  inset:-4px;
-  border-radius:50%;
-  border:2.5px solid transparent;
-  border-top-color:#FFD700;
-  border-right-color:#FFD700;
-  animation:dotSpin 2s linear infinite;
-  filter:drop-shadow(0 0 3px rgba(255,215,0,0.8));
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:2.5px solid transparent;border-top-color:#FFD700;border-right-color:#FFD700;
+  animation:dotSpin 2s linear infinite;filter:drop-shadow(0 0 3px rgba(255,215,0,0.8));
 }
 .dot.next-dot::after {
-  content:'';
-  position:absolute;
-  inset:-4px;
-  border-radius:50%;
-  border:2.5px solid transparent;
-  border-bottom-color:rgba(255,215,0,0.3);
-  border-left-color:rgba(255,215,0,0.3);
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:2.5px solid transparent;border-bottom-color:rgba(255,215,0,0.3);border-left-color:rgba(255,215,0,0.3);
   animation:dotSpin 2s linear infinite;
 }
 @keyframes dotSpin {
   from { transform:rotate(0deg); }
   to   { transform:rotate(360deg); }
 }
-.dot-lbl{font-size:9px;color:#888;text-align:center;line-height:1.2;max-width:38px;}
+.dot-lbl{
+  font-size:clamp(9.5px, 2.5vw, 12.5px); 
+  color:#888;text-align:center;line-height:1.15;
+  max-width:100%;word-break:keep-all;
+}
 .dot-lbl.active{color:var(--navy);font-weight:700;}
 
 /* SLIDES */
-.slides-outer{flex:1;overflow:hidden;position:relative;margin-top:148px;margin-bottom:68px;}
+.slides-outer{flex:1;overflow:hidden;position:relative;margin-top:175px;margin-bottom:68px;}
 .slides{display:flex;height:100%;transition:transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94);}
 .slide{min-width:100%;height:100%;overflow-y:auto;background:#f0f2f5;padding:12px 14px 16px;scrollbar-width:none;}
 .slide::-webkit-scrollbar{display:none;}
@@ -449,7 +456,6 @@ body{
 .divider{height:1px;background:#e5e7eb;margin:1px 0;}
 
 /* ── 骨牌進場動效 ── */
-/* 骨牌進場：只有 entering-slide 才套用，平時不影響 */
 .slide.entering-slide .slide-body > *:nth-child(1)  { animation: staggerIn 0.4s 0.05s both ease-out; }
 .slide.entering-slide .slide-body > *:nth-child(2)  { animation: staggerIn 0.4s 0.10s both ease-out; }
 .slide.entering-slide .slide-body > *:nth-child(3)  { animation: staggerIn 0.4s 0.15s both ease-out; }
@@ -460,6 +466,10 @@ body{
 .slide.entering-slide .slide-body > *:nth-child(8)  { animation: staggerIn 0.4s 0.40s both ease-out; }
 .slide.entering-slide .slide-body > *:nth-child(9)  { animation: staggerIn 0.4s 0.45s both ease-out; }
 .slide.entering-slide .slide-body > *:nth-child(10) { animation: staggerIn 0.4s 0.50s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(11) { animation: staggerIn 0.4s 0.55s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(12) { animation: staggerIn 0.4s 0.60s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(13) { animation: staggerIn 0.4s 0.65s both ease-out; }
+.slide.entering-slide .slide-body > *:nth-child(14) { animation: staggerIn 0.4s 0.70s both ease-out; }
 
 @keyframes staggerIn {
   from { transform:translateY(16px); }
@@ -657,8 +667,8 @@ body{
     <div class="slide-head">
       <span class="slide-head-ico">🛃</span>
       <div>
-        <div class="slide-head-title" data-zh="海關檢疫" data-id="Pemeriksaan Bea Cukai">海關檢疫</div>
-        <div class="slide-head-sub" data-zh="入出境規定，違反將被重罰" data-id="Peraturan masuk/keluar, pelanggar didenda berat">入出境規定，違反將被重罰</div>
+        <div class="slide-head-title" data-zh="海關與安全" data-id="Bea Cukai & Keamanan">海關與安全</div>
+        <div class="slide-head-sub" data-zh="入出境與攜帶物品規定" data-id="Aturan masuk/keluar & barang bawaan">入出境與攜帶物品規定</div>
       </div>
     </div>
     <div class="slide-body">
@@ -668,12 +678,10 @@ body{
         <div class="ci am"><div class="ci-ico">💵</div><div><div class="ci-t" data-zh="現金：上限 $10,000 美元" data-id="Uang Tunai: Maks. $10.000 USD">現金：上限 $10,000 美元</div><div class="ci-s" data-zh="超過需向海關申報" data-id="Lebih dari itu harus dilaporkan ke bea cukai">超過需向海關申報</div></div></div>
       </div>
       <div class="card red"><span class="card-ico">🚨</span><div><div class="card-title" data-zh="從日本帶回台灣也一樣禁止！" data-id="Membawa dari Jepang ke Taiwan juga dilarang!">從日本帶回台灣也一樣禁止！</div><div class="card-desc" data-zh="在沖繩購買的蔬果、肉類，不能帶回船上或帶回台灣。" data-id="Sayuran dan daging yang dibeli di Okinawa tidak boleh dibawa ke kapal atau Taiwan.">在沖繩購買的蔬果、肉類，不能帶回船上或帶回台灣。</div></div></div>
-    </div>
-  </div>
+      
+      <div class="divider" style="margin:6px 0;"></div>
+      <div class="stitle blue" data-zh="🔍 安全檢查" data-id="🔍 Pemeriksaan Keamanan">🔍 安全檢查</div>
 
-  <div class="slide">
-    <div class="slide-head"><span class="slide-head-ico">🔍</span><div><div class="slide-head-title" data-zh="安全檢查" data-id="Pemeriksaan Keamanan">安全檢查</div><div class="slide-head-sub" data-zh="查到沒收，離船才還" data-id="Disita saat ditemukan, dikembalikan saat turun">查到沒收，離船才還</div></div></div>
-    <div class="slide-body">
       <div class="card gray"><span class="card-ico">🧳</span><div><div class="card-title" data-zh="手提行李可攜帶物" data-id="Barang Wajib di Bagasi Kabin">手提行李可攜帶物</div><div class="card-desc" data-zh="藥品、電腦、相機、貴重物品必須放手提行李，不可託運。" data-id="Obat-obatan, laptop, kamera, dan barang berharga wajib dibawa di bagasi kabin, tidak boleh di-check-in.">藥品、電腦、相機、貴重物品必須放手提行李，不可託運。</div></div></div>
       <div class="card amber"><span class="card-ico">⚠️</span><div><div class="card-title" data-zh="禁止攜帶液體 &amp; 生鮮食物上船" data-id="Dilarang bawa cairan &amp; makanan segar ke kapal">禁止攜帶液體 &amp; 生鮮食物上船</div><div class="card-desc" data-zh="個人護理品（洗髮精、沐浴乳、面霜）、藥品、兒童食品不在此限。" data-id="Produk perawatan (sampo, sabun, krim), obat, makanan bayi tidak termasuk larangan.">個人護理品（洗髮精、沐浴乳、面霜）、藥品、兒童食品不在此限。</div></div></div>
       <div class="stitle red" data-zh="🚫 查到沒收，離船才還" data-id="🚫 Disita, dikembalikan saat turun kapal">🚫 查到沒收，離船才還</div>
@@ -966,7 +974,7 @@ function exitSplash(){
   if(splashDone)return;
   splashDone=true;
   
-  // 呼叫我們新寫的皮克敏合成旋律
+  // 呼叫升級版皮克敏合成旋律
   playPikminStyleMelody();
   
   document.getElementById('splash').classList.add('splash-exit');
@@ -976,7 +984,7 @@ function exitSplash(){
   startCountdown();
 }
 
-// ════ 聲音系統 ════
+// ════ 聲音系統 (升級版) ════
 let isMuted = localStorage.getItem('msc-muted') === 'true';
 
 function toggleSound() {
@@ -998,58 +1006,99 @@ function getAudioCtx(){
   return window._mscAudioCtx;
 }
 
-// 產生類似皮克敏風格的輕快 8-bit 旋律
+// 產生殘響 (Reverb) 讓聲音不再空洞
+function makeSoundReverb(ctx, dur, wet){
+  const len = ctx.sampleRate * dur;
+  const buf = ctx.createBuffer(2, len, ctx.sampleRate);
+  for(let ch=0; ch<2; ch++){
+    const d = buf.getChannelData(ch);
+    for(let i=0; i<len; i++) d[i] = (Math.random()*2-1) * Math.pow(1 - i/len, 2);
+  }
+  const rev = ctx.createConvolver(); rev.buffer = buf;
+  const g = ctx.createGain(); g.gain.value = wet;
+  rev.connect(g); g.connect(ctx.destination);
+  return rev;
+}
+
+// 產生類似皮克敏風格的輕快豐滿 8-bit 旋律
 function playPikminStyleMelody(){
-  if(isMuted) return; // 靜音狀態不播放音效
+  if(isMuted) return;
 
   try {
     const ctx = getAudioCtx();
     ctx.resume().then(() => {
       const t = ctx.currentTime;
       
-      // 定義音符頻率 (C5, D5, E5... 等)
-      const C5 = 523.25, D5 = 587.33, E5 = 659.25, F5 = 698.46;
-      const G5 = 783.99, A5 = 880.00, C6 = 1046.50;
+      // 加入殘響空間感
+      const rev = makeSoundReverb(ctx, 1.5, 0.35);
+      
+      // 音符頻率對照
+      const notes = {
+        G3: 196.00, A3: 220.00, B3: 246.94, C4: 261.63, D4: 293.66, 
+        E4: 329.63, F4: 349.23, G4: 392.00, A4: 440.00,
+        C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99, 
+        A5: 880.00, C6: 1046.50
+      };
 
-      // 樂譜陣列：[頻率, 延遲播放時間(秒), 持續時間(秒)]
-      const melody = [
-        [C5, 0.00, 0.15],
-        [E5, 0.25, 0.15],
-        [G5, 0.50, 0.15],
-        [C6, 0.75, 0.20], // 往上跳耀
-        [A5, 1.00, 0.15],
-        [G5, 1.25, 0.40], // 停頓一下
-        [C5, 1.80, 0.15],
-        [E5, 2.00, 0.15],
-        [G5, 2.20, 0.15],
-        [F5, 2.40, 0.15],
-        [D5, 2.60, 0.15],
-        [C5, 2.80, 0.60]  // 完美落地
+      // 主旋律 [音名, 延遲播放時間, 持續時間]
+      const mel = [
+        ['C5', 0.00, 0.15], ['E5', 0.25, 0.15], ['G5', 0.50, 0.15], ['C6', 0.75, 0.20],
+        ['A5', 1.00, 0.15], ['G5', 1.25, 0.40],
+        ['C5', 1.80, 0.15], ['E5', 2.00, 0.15], ['G5', 2.20, 0.15], ['F5', 2.40, 0.15],
+        ['D5', 2.60, 0.15], ['C5', 2.80, 0.60]
       ];
 
-      // 播放旋律
-      melody.forEach(([freq, delay, dur]) => {
+      // 溫暖的和弦/低音伴奏
+      const acc = [
+        ['C4', 0.00, 0.2], ['E4', 0.00, 0.2], ['G3', 0.25, 0.2], ['C4', 0.50, 0.2], ['E4', 0.50, 0.2],
+        ['E4', 0.75, 0.2], ['C4', 0.75, 0.2], ['F4', 1.00, 0.2], ['C4', 1.25, 0.4], ['E4', 1.25, 0.4],
+        ['A3', 1.80, 0.2], ['C4', 1.80, 0.2], ['C4', 2.00, 0.2], ['E4', 2.20, 0.2], ['D4', 2.40, 0.2], ['B3', 2.40, 0.2],
+        ['G3', 2.60, 0.2], ['C4', 2.80, 0.6], ['E4', 2.80, 0.6], ['G4', 2.80, 0.6]
+      ];
+
+      // 核心合成器發聲函數
+      function playSynth(note, time, dur, type, vol, detune=0, isStaccato=false) {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
-        
-        // 使用 sine (正弦波) 創造類似長笛/口哨的可愛圓潤聲音
-        osc.type = 'sine'; 
-        osc.frequency.value = freq;
+        osc.type = type;
+        osc.frequency.value = notes[note];
+        if(detune) osc.detune.value = detune;
 
-        // 包絡線設定 (Envelope)：創造輕快、斷奏(Staccato)的彈跳感
-        gain.gain.setValueAtTime(0, t + delay);
-        gain.gain.linearRampToValueAtTime(0.25, t + delay + 0.02); // 快速漸強
-        gain.gain.exponentialRampToValueAtTime(0.01, t + delay + dur); // 帶有彈性的漸弱
+        gain.gain.setValueAtTime(0, t + time);
+        gain.gain.linearRampToValueAtTime(vol, t + time + 0.02);
+        
+        if(isStaccato) {
+            // 短促斷奏，快速衰減
+            gain.gain.exponentialRampToValueAtTime(0.001, t + time + dur * 0.8);
+        } else {
+            // 平緩延伸音
+            gain.gain.setValueAtTime(vol, t + time + dur - 0.05);
+            gain.gain.linearRampToValueAtTime(0, t + time + dur);
+        }
 
         osc.connect(gain);
         gain.connect(ctx.destination);
+        gain.connect(rev); // 串接殘響效果
 
-        osc.start(t + delay);
-        osc.stop(t + delay + dur);
+        osc.start(t + time);
+        osc.stop(t + time + dur + 0.1);
+      }
+
+      // 1. 播放疊加的主旋律 (Sine + 些微走音的 Triangle 創造豐厚感)
+      mel.forEach(([n, time, dur]) => {
+        playSynth(n, time, dur, 'sine', 0.25, 0, true);
+        playSynth(n, time, dur, 'triangle', 0.15, 5, true); 
       });
+
+      // 2. 播放伴奏層 (柔和的低音與和弦)
+      acc.forEach(([n, time, dur]) => {
+        playSynth(n, time, dur, 'sine', 0.10, 0, false);
+        playSynth(n, time, dur, 'triangle', 0.08, -3, false);
+      });
+
     });
   } catch(e) { 
-    console.log('Audio not supported:', e); 
+    console.log('Audio error:', e); 
   }
 }
 
@@ -1057,19 +1106,36 @@ function playPikminStyleMelody(){
 setTimeout(exitSplash, 4500);
 
 // ════ APP LOGIC ════
-const ICONS=['🛃','🔍','🧳','🚿','👔','💳','🚬','⏱️'];
-const TZH=['海關','安全','行李','盥洗','衣著','無現金','抽菸','回船'];
-const TID=['Cukai','Aman','Bagasi','Mandi','Pakaian','Bayar','Rokok','Waktu'];
+let ICONS=['🛃','🧳','🚿','👔','💳','🚬','⏱️'];
+let TZH=['海關安全','行李','盥洗','衣著','無現金','抽菸','回船'];
+let TID=['Cukai Aman','Bagasi','Mandi','Pakaian','Bayar','Rokok','Waktu'];
 let cur=0, lang='zh';
-const N=8;
+const N=7;
 
-// 閱讀進度記憶
-// 用 sessionStorage 判斷是否為「同一次開啟」
-// 全新開啟 → 從第0頁開始；同次閱讀中途關掉重開 → 繼續上次
+// ── 判斷日期，如果是 6/20 將「回船」移至最前面 ──
+const today = new Date();
+// 月份為 0-11 (5 代表 6月)
+if (today.getFullYear() === 2026 && today.getMonth() === 5 && today.getDate() === 20) {
+  // 將陣列的最後一項移到第一項
+  const moveLastToFirst = (arr) => [arr[6], ...arr.slice(0, 6)];
+  ICONS = moveLastToFirst(ICONS);
+  TZH = moveLastToFirst(TZH);
+  TID = moveLastToFirst(TID);
+
+  // 同步調換 DOM 元素的順序
+  document.addEventListener("DOMContentLoaded", () => {
+    const slidesContainer = document.getElementById('slides');
+    const slideEls = slidesContainer.querySelectorAll('.slide');
+    if (slideEls.length === 7) {
+      slidesContainer.insertBefore(slideEls[6], slideEls[0]);
+    }
+  });
+}
+
 const isNewSession = !sessionStorage.getItem('msc-session');
 if(isNewSession){
   sessionStorage.setItem('msc-session','1');
-  localStorage.removeItem('msc-page'); // 清掉上次紀錄
+  localStorage.removeItem('msc-page'); 
   cur = 0;
 } else {
   const saved = parseInt(localStorage.getItem('msc-page')||'0');
@@ -1100,7 +1166,7 @@ function go(i){
   document.getElementById('slides').style.transform=`translateX(-${cur*100}%)`;
   localStorage.setItem('msc-page',cur);
   buildProg();updateNav();detectDevice();updateiOSText();updateGenericText();initFont();
-// 初始觸發第一頁動效
+
 setTimeout(()=>{
   const first = document.querySelectorAll('.slide')[cur];
   if(first){
@@ -1136,7 +1202,7 @@ function setLang(l){
   lang=l;
   document.getElementById('btn-zh').className='lang-btn'+(l==='zh'?' active':'');
   document.getElementById('btn-id').className='lang-btn'+(l==='id'?' active':'');
-  // update splash tap hint
+  
   const tt=document.getElementById('tap-text');
   if(tt)tt.textContent=l==='zh'?'點擊任意處開始':'Ketuk untuk mulai';
   applyLang();buildProg();updateNav();detectDevice();updateiOSText();updateGenericText();
@@ -1144,7 +1210,7 @@ function setLang(l){
   if(calBtn) calBtn.textContent = l==='zh'
     ? '加入行事曆提醒（10:30 起床準備回船）'
     : 'Tambah Pengingat Kalender (10:30 Siap Kembali)';initFont();
-// 初始觸發第一頁動效
+
 setTimeout(()=>{
   const first = document.querySelectorAll('.slide')[cur];
   if(first){
@@ -1162,8 +1228,6 @@ function applyLang(){
 }
 
 // ════ COUNTDOWN ════
-// DAY3 = 2026-06-20, target 11:00 JST (UTC+9) = 02:00 UTC
-// JST is UTC+9, target 11:00 JST = 11:00+09:00
 const TARGET_IDEAL   = new Date('2026-06-20T11:00:00+09:00');
 const TARGET_WARN    = new Date('2026-06-20T12:00:00+09:00');
 const TARGET_DANGER  = new Date('2026-06-20T13:00:00+09:00');
@@ -1246,12 +1310,10 @@ function showToast(msg){
 
 // ════ PWA SETUP ════
 function setupPWA() {
-  // 用 Canvas 生成郵輪 APP 圖示
   const canvas = document.createElement('canvas');
   canvas.width = 512; canvas.height = 512;
   const ctx = canvas.getContext('2d');
 
-  // 背景漸層
   const bg = ctx.createLinearGradient(0, 0, 512, 512);
   bg.addColorStop(0, '#040d1e');
   bg.addColorStop(0.5, '#0a2a5e');
@@ -1260,13 +1322,11 @@ function setupPWA() {
   roundRect(ctx, 0, 0, 512, 512, 80);
   ctx.fill();
 
-  // 星星
   ctx.fillStyle = 'rgba(255,255,255,0.7)';
   [[60,80],[120,40],[200,60],[300,30],[400,70],[450,50],[80,140],[350,100]].forEach(([x,y]) => {
     ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
   });
 
-  // 月亮
   const moon = ctx.createRadialGradient(420, 80, 5, 420, 80, 45);
   moon.addColorStop(0, '#fffde0'); moon.addColorStop(1, '#e8b840');
   ctx.fillStyle = moon;
@@ -1274,68 +1334,55 @@ function setupPWA() {
   ctx.fillStyle = 'rgba(245,216,100,0.2)';
   ctx.beginPath(); ctx.arc(420, 80, 55, 0, Math.PI*2); ctx.fill();
 
-  // 海浪
   ctx.fillStyle = '#0d3a6e';
   ctx.beginPath(); ctx.moveTo(0,370); ctx.quadraticCurveTo(128,340,256,360); ctx.quadraticCurveTo(384,380,512,355); ctx.lineTo(512,512); ctx.lineTo(0,512); ctx.fill();
   ctx.fillStyle = '#1a5099';
   ctx.beginPath(); ctx.moveTo(0,400); ctx.quadraticCurveTo(100,380,256,395); ctx.quadraticCurveTo(400,410,512,388); ctx.lineTo(512,512); ctx.lineTo(0,512); ctx.fill();
 
-  // 船體
   ctx.fillStyle = '#1a3a6e';
   ctx.beginPath();
   ctx.moveTo(60,350); ctx.lineTo(80,270); ctx.lineTo(432,270); ctx.lineTo(452,350); ctx.closePath(); ctx.fill();
 
-  // 船底
   ctx.fillStyle = '#0d2548';
   ctx.beginPath(); ctx.moveTo(60,350); ctx.quadraticCurveTo(256,375,452,350); ctx.lineTo(440,368); ctx.quadraticCurveTo(256,390,72,368); ctx.closePath(); ctx.fill();
 
-  // 甲板層1
   ctx.fillStyle = '#1e4a8a';
   ctx.fillRect(75, 235, 362, 38);
 
-  // 甲板層2
   ctx.fillStyle = '#1d488c';
   ctx.fillRect(95, 200, 322, 38);
 
-  // 甲板層3（頂層）
   ctx.fillStyle = '#205090';
   ctx.fillRect(130, 168, 252, 35);
 
-  // 舷窗 - 層1
   ctx.fillStyle = 'rgba(255,240,160,0.9)';
   [110,145,180,215,250,285,320,355,390].forEach(x => {
     ctx.beginPath(); ctx.arc(x, 254, 9, 0, Math.PI*2); ctx.fill();
   });
 
-  // 舷窗 - 層2
   [120,158,196,234,272,310,348,386].forEach(x => {
     ctx.beginPath(); ctx.arc(x, 219, 8, 0, Math.PI*2); ctx.fill();
   });
 
-  // 舷窗 - 層3
   [155,190,225,260,295,330,365].forEach(x => {
     ctx.beginPath(); ctx.arc(x, 186, 7, 0, Math.PI*2); ctx.fill();
   });
 
-  // 煙囪左
   ctx.fillStyle = '#c8970a';
   ctx.fillRect(168, 128, 38, 45);
   ctx.fillStyle = '#daa820';
   ctx.beginPath(); ctx.ellipse(187, 128, 20, 7, 0, 0, Math.PI*2); ctx.fill();
 
-  // 煙囪右
   ctx.fillStyle = '#c8970a';
   ctx.fillRect(306, 128, 38, 45);
   ctx.fillStyle = '#daa820';
   ctx.beginPath(); ctx.ellipse(325, 128, 20, 7, 0, 0, Math.PI*2); ctx.fill();
 
-  // MSC 字樣
   ctx.fillStyle = 'rgba(255,255,255,0.6)';
   ctx.font = 'bold 28px Arial';
   ctx.textAlign = 'center';
   ctx.fillText('MSC BELLISSIMA', 256, 336);
 
-  // 旗幟
   ctx.strokeStyle = 'rgba(255,255,255,0.6)';
   ctx.lineWidth = 3;
   ctx.beginPath(); ctx.moveTo(256, 90); ctx.lineTo(256, 168); ctx.stroke();
@@ -1344,11 +1391,9 @@ function setupPWA() {
 
   const iconUrl = canvas.toDataURL('image/png');
 
-  // 設定 Apple touch icon
   const appleIcon = document.getElementById('apple-icon');
   if(appleIcon) appleIcon.href = iconUrl;
 
-  // 注入 manifest
   const manifestData = {
     name: 'MSC榮耀號 登船須知',
     short_name: 'MSC登船須知',
@@ -1392,7 +1437,7 @@ function adjustFont(delta){
   triggerHaptic();
   fontSize = Math.min(20, Math.max(12, fontSize + delta));
   localStorage.setItem('msc-fontsize', fontSize);
-  // 套用到 card-desc, card-title, ci-s, ig-lbl 等
+  
   document.querySelectorAll('.card-desc,.ci-s,.ig-sub,.hint,.done-sub').forEach(el=>{
     el.style.fontSize = (fontSize - 1.5)+'px';
   });
@@ -1402,7 +1447,6 @@ function adjustFont(delta){
   showToast(fontSize <= 12 ? '最小了！' : fontSize >= 20 ? '最大了！' : (delta > 0 ? '字體放大 👍' : '字體縮小'));
 }
 
-// 初始化字體
 function initFont(){
   if(fontSize !== 14){
     document.querySelectorAll('.card-desc,.ci-s,.ig-sub,.hint,.done-sub').forEach(el=>{
@@ -1417,8 +1461,6 @@ function initFont(){
 // ════ 行事曆 ════
 function addToCalendar(){
   triggerHaptic();
-  // DAY3 2026/06/20 提醒 10:30 JST (+09:00)
-  // ICS 格式用 UTC 時間：10:30 JST = 01:30 UTC
   const ics = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -1461,7 +1503,6 @@ if('serviceWorker' in navigator){
 // ════ INSTALL ════
 let deferredPrompt = null;
 
-// 偵測裝置類型，決定顯示哪個安裝說明
 function detectDevice() {
   const ua = navigator.userAgent;
   const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
@@ -1474,23 +1515,19 @@ function detectDevice() {
   const genericEl  = document.getElementById('generic-install');
 
   if(isStandalone) {
-    // 已安裝 - 隱藏所有安裝UI
     if(androidEl)  androidEl.style.display  = 'none';
     if(iosEl)      iosEl.style.display       = 'none';
     if(genericEl)  genericEl.style.display   = 'none';
   } else if(isIOS) {
-    // iPhone - 顯示 Safari 教學
     if(androidEl)  androidEl.style.display  = 'none';
     if(iosEl)      iosEl.style.display       = 'block';
     if(genericEl)  genericEl.style.display   = 'none';
     updateiOSText();
   } else if(deferredPrompt) {
-    // Android Chrome - 顯示一鍵安裝按鈕
     if(androidEl)  androidEl.style.display  = 'block';
     if(iosEl)      iosEl.style.display       = 'none';
     if(genericEl)  genericEl.style.display   = 'none';
   } else {
-    // 其他 - 顯示通用教學
     if(androidEl)  androidEl.style.display  = 'none';
     if(iosEl)      iosEl.style.display       = 'none';
     if(genericEl)  genericEl.style.display   = 'block';
@@ -1501,7 +1538,7 @@ function detectDevice() {
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredPrompt = e;
-  detectDevice(); // re-evaluate now we have the prompt
+  detectDevice();
 });
 
 window.addEventListener('appinstalled', () => {
@@ -1538,19 +1575,32 @@ function updateGenericText() {
     : '🤖 <b>Android：</b>Chrome ⋮ → 「Tambahkan ke Layar Utama」<br>🍎 <b>iPhone：</b>Safari □↑ → 「Tambahkan ke Layar Utama」';
 }
 
-function detectiOS() { detectDevice(); }  // alias
+function detectiOS() { detectDevice(); }
 
 // ════ INIT ════
-buildProg();updateNav();
-document.getElementById('btn-sound').textContent = isMuted ? '🔇' : '🔊';
-// Restore saved page
-if(cur>0){
-  document.getElementById('slides').style.transform=`translateX(-${cur*100}%)`;
-  document.getElementById('slides').style.transition='none';
-  setTimeout(()=>document.getElementById('slides').style.transition='',100);
-}
-// Start countdown if already visible
-if(splashDone) startCountdown();
+document.addEventListener("DOMContentLoaded", () => {
+  // 檢查是否為 6/20，如果是的話直接替換 DOM
+  const today = new Date();
+  if (today.getFullYear() === 2026 && today.getMonth() === 5 && today.getDate() === 20) {
+    const slidesContainer = document.getElementById('slides');
+    const slideEls = slidesContainer.querySelectorAll('.slide');
+    if (slideEls.length === 7) {
+      slidesContainer.insertBefore(slideEls[6], slideEls[0]);
+    }
+  }
+
+  buildProg();
+  updateNav();
+  document.getElementById('btn-sound').textContent = isMuted ? '🔇' : '🔊';
+
+  if(cur>0){
+    document.getElementById('slides').style.transform=`translateX(-${cur*100}%)`;
+    document.getElementById('slides').style.transition='none';
+    setTimeout(()=>document.getElementById('slides').style.transition='',100);
+  }
+
+  if(splashDone) startCountdown();
+});
 </script>
 </body>
 </html>
